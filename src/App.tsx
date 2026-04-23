@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import { Menu } from 'lucide-react';
 import { useStore } from './store/useStore';
 import Sidebar from './components/Sidebar';
