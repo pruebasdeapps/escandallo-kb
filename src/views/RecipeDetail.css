@@ -10,6 +10,26 @@
 .icon-btn.edit { color: var(--warning); }
 .icon-btn.delete { color: var(--danger); }
 
+.btn-print-pro {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+.btn-print-pro:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
 /* Header */
 .detail-grid { display: flex; flex-direction: column; gap: 1.5rem; }
 .detail-header { display: flex; justify-content: space-between; gap: 1.5rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; }
@@ -27,7 +47,7 @@
 .header-info > p { font-size: 0.85rem; color: var(--text-muted); }
 .recipe-description { margin-top: 0.5rem; font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; }
 .approval-line { margin-top: 0.5rem; font-size: 0.78rem; color: var(--text-muted); }
-.header-image { width: 160px; height: 120px; border-radius: 10px; overflow: hidden; flex-shrink: 0; }
+.header-image { width: 160px; height: 120px; border-radius: 10px; overflow: hidden; flex-shrink: 0; border: 1px solid var(--border); }
 .header-image img { width: 100%; height: 100%; object-fit: cover; }
 
 /* Allergens */
@@ -109,9 +129,25 @@
 
 /* Print */
 @media print {
-  .detail-nav { display: none !important; }
-  .recipe-detail-view { padding: 0; }
-  .cost-card { break-inside: avoid; }
+  body {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  .detail-nav, .icon-btn, .btn-print-pro, .btn-back, .detail-actions { display: none !important; }
+  .recipe-detail-view { padding: 0; background: white !important; }
+  .detail-header { background: #f9fafb !important; border-color: #e5e7eb !important; padding: 1rem !important; }
+  .header-image { width: 300px !important; height: 200px !important; }
+  .cost-card { break-inside: avoid; border-color: #e5e7eb !important; }
+  .cost-card.highlight { background: #eff6ff !important; border-color: #3b82f6 !important; }
+  .badge-type { background: #2563eb !important; color: white !important; }
+  .ingredients-breakdown, .labor-indirect-section, .quality-section, .recipe-steps, .print-only-summary { 
+    border-color: #e5e7eb !important; 
+    box-shadow: none !important;
+    margin-bottom: 1rem !important;
+    padding: 1rem !important;
+  }
+  .breakdown-table th { border-bottom-color: #e5e7eb !important; }
+  .breakdown-table td { border-bottom-color: #f3f4f6 !important; }
 }
 
 /* Print Summary Section */
@@ -131,11 +167,11 @@
 .summary-formulas li span { font-weight: 600; color: var(--text-muted); }
 .summary-formulas code { font-family: 'Roboto Mono', monospace; color: var(--accent); background: var(--bg-card); padding: 0.2rem 0.4rem; border-radius: 4px; border: 1px solid var(--border); }
 @media print {
-  .print-only-summary { border: none; padding: 0; margin-top: 3rem; page-break-inside: avoid; background: white; }
+  .print-only-summary { border: none; padding: 0; margin-top: 2rem; page-break-inside: avoid; background: white !important; }
   .summary-grid { gap: 4rem; }
-  .summary-col li { border-bottom-color: #ccc; }
-  .summary-total { border-top-color: #000; }
-  .summary-formulas { border-color: #ccc; background: #fafafa; }
+  .summary-col li { border-bottom-color: #eee !important; }
+  .summary-total { border-top-color: #000 !important; }
+  .summary-formulas { border-color: #eee !important; background: #fafafa !important; }
 }
 
 @media (max-width: 1200px) {

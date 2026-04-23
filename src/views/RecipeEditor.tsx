@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useStore } from '../store/useStore';
 import type { Recipe, RecipeIngredient, RecipeType, Unit, LaborItem, IndirectCost, ElaborationPhase } from '../types';
-import { Save, X, Plus, Trash2, ChevronDown, ChevronUp, Calculator } from 'lucide-react';
+import { Save, X, Plus, Trash2, ChevronDown, ChevronUp, Calculator, Camera } from 'lucide-react';
 import SearchableSelect from '../components/SearchableSelect';
 import DecimalInput from '../components/DecimalInput';
 import './RecipeEditor.css';
@@ -163,6 +163,43 @@ const RecipeEditor: React.FC = () => {
   const updateEquipment = (i: number, v: string) => { const e = [...(recipe.equipment || [])]; e[i] = v; setRecipe({ ...recipe, equipment: e }); };
   const removeEquipment = (i: number) => setRecipe({ ...recipe, equipment: recipe.equipment?.filter((_, idx) => idx !== i) });
 
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const img = new Image();
+        img.src = reader.result as string;
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          const MAX_WIDTH = 800;
+          const MAX_HEIGHT = 600;
+          let width = img.width;
+          let height = img.height;
+
+          if (width > height) {
+            if (width > MAX_WIDTH) {
+              height *= MAX_WIDTH / width;
+              width = MAX_WIDTH;
+            }
+          } else {
+            if (height > MAX_HEIGHT) {
+              width *= MAX_HEIGHT / height;
+              height = MAX_HEIGHT;
+            }
+          }
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          ctx?.drawImage(img, 0, 0, width, height);
+          const dataUrl = canvas.toDataURL('image/jpeg', 0.7);
+          setRecipe({ ...recipe, image: dataUrl });
+        };
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   return (
     <div className="recipe-editor fade-in">
       <header className="view-header compact">
@@ -200,6 +237,22 @@ const RecipeEditor: React.FC = () => {
         <div className="form-row">
           <div className="form-group flex-2"><label>Descripción</label><textarea value={recipe.description || ''} onChange={e => setRecipe({ ...recipe, description: e.target.value })} placeholder="Descripción breve del plato" rows={2} /></div>
           <div className="form-group flex-1"><label>Presentación Final</label><input type="text" value={recipe.presentation || ''} onChange={e => setRecipe({ ...recipe, presentation: e.target.value })} placeholder="Ej. Plato hondo" /></div>
+        </div>
+        <div className="form-row" style={{ borderTop: '1px dashed var(--border)', paddingTop: '1rem', marginTop: '0.5rem' }}>
+          <div className="form-group flex-1" style={{ display: 'flex', flexDirection: 'row', gap: '1rem', alignItems: 'center' }}>
+            <div className="image-upload-preview" style={{ width: '100px', height: '100px', borderRadius: '8px', overflow: 'hidden', background: 'var(--bg-main)', border: '1px solid var(--border)', flexShrink: 0 }}>
+              {recipe.image ? <img src={recipe.image} style={{ width: '100%', height: '100%', objectFit: 'cover' }} /> : <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-muted)' }}><Camera size={24} /></div>}
+            </div>
+            <div style={{ flex: 1 }}>
+              <label>Imagen del Escandallo</label>
+              <input type="file" id="recipe-image-input" hidden accept="image/*" onChange={handleImageUpload} />
+              <div style={{ display: 'flex', gap: '0.5rem', marginTop: '0.5rem' }}>
+                <button type="button" className="btn-secondary btn-sm" onClick={() => document.getElementById('recipe-image-input')?.click()}><Camera size={14} /> Subir Foto</button>
+                {recipe.image && <button type="button" className="btn-icon-danger" onClick={() => setRecipe({ ...recipe, image: '' })}><Trash2 size={14} /></button>}
+              </div>
+              <p style={{ fontSize: '0.7rem', color: 'var(--text-muted)', marginTop: '0.25rem' }}>Acepta todos los formatos. La foto se guardará a tamaño medio optimizado.</p>
+            </div>
+          </div>
         </div>
         {/* Aprobación formal */}
         <div className="form-row approval-row">

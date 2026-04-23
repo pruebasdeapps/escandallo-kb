@@ -42,6 +42,7 @@ interface AppState extends AppData {
   updateRecipe: (recipe: Recipe) => void;
   deleteRecipe: (id: string) => void;
   updateConfig: (config: AppConfig) => void;
+  getRecipesUsingItem: (id: string) => string[];
 }
 
 /**
@@ -71,6 +72,28 @@ const deepMergeConfig = (defaults: AppConfig, saved: Partial<AppConfig> | undefi
       ? saved.indirectCostDefaults
       : defaults.indirectCostDefaults
   };
+};
+
+/**
+ * Encuentra de forma recursiva (cascada profunda) todas las recetas
+ * que dependen directa o indirectamente de un ingrediente o semielaborado.
+ */
+const getAffectedRecipeIds = (recipes: Recipe[], targetId: string): string[] => {
+  const affected = new Set<string>();
+
+  const findAffected = (id: string) => {
+    recipes.forEach(r => {
+      if (r.ingredients.some(i => i.id === id)) {
+        if (!affected.has(r.id)) {
+          affected.add(r.id);
+          findAffected(r.id); // Llamada recursiva para los padres
+        }
+      }
+    });
+  };
+
+  findAffected(targetId);
+  return Array.from(affected);
 };
 
 export const useStore = create<AppState>((set, get) => ({
@@ -142,6 +165,13 @@ export const useStore = create<AppState>((set, get) => ({
     }
   },
 
+  getRecipesUsingItem: (id: string) => {
+    const { recipes } = get();
+    return recipes
+      .filter(r => r.ingredients.some(ing => ing.id === id))
+      .map(r => r.name);
+  },
+
   addIngredient: (ingredient) => {
     const newState = { ingredients: [...get().ingredients, ingredient] };
     set(newState);
@@ -165,15 +195,17 @@ export const useStore = create<AppState>((set, get) => ({
       const historyEntry = { date: `${day}/${month}/${year}`, price: old.price };
       updatedIng.priceHistory = [historyEntry, ...(old.priceHistory || [])];
 
-      // Mark affected recipes as updated (costes se calculan al vuelo en la UI, solo cambiamos la fecha)
-      newRecipes = newRecipes.map(r => {
-        const usesIngredient = r.ingredients.some(i => i.id === ingredient.id);
-        if (usesIngredient) {
-          recipesUpdated = true;
-          return { ...r, hasOutdatedPrice: false, lastUpdated: new Date().toISOString().split('T')[0] };
-        }
-        return r;
-      });
+      // Cascada profunda: marcar todas las recetas dependientes (directas o indirectas)
+      const affectedIds = getAffectedRecipeIds(recipes, ingredient.id);
+      if (affectedIds.length > 0) {
+        recipesUpdated = true;
+        newRecipes = newRecipes.map(r => {
+          if (affectedIds.includes(r.id)) {
+            return { ...r, hasOutdatedPrice: false, lastUpdated: new Date().toISOString().split('T')[0] };
+          }
+          return r;
+        });
+      }
     }
 
     const newIngredients = ingredients.map(i => i.id === ingredient.id ? updatedIng : i);
@@ -202,10 +234,22 @@ export const useStore = create<AppState>((set, get) => ({
   },
 
   updateRecipe: (recipe) => {
-    const newState = {
-      recipes: get().recipes.map(r => r.id === recipe.id ? recipe : r)
-    };
-    set(newState);
+    const { recipes } = get();
+    
+    // Si se modifica un semielaborado, propagar fecha a los platos que lo usan
+    const affectedIds = getAffectedRecipeIds(recipes, recipe.id);
+    let newRecipes = recipes.map(r => r.id === recipe.id ? recipe : r);
+
+    if (affectedIds.length > 0) {
+      newRecipes = newRecipes.map(r => {
+        if (affectedIds.includes(r.id)) {
+          return { ...r, lastUpdated: new Date().toISOString().split('T')[0] };
+        }
+        return r;
+      });
+    }
+
+    set({ recipes: newRecipes });
     saveToLocal(get());
   },
 

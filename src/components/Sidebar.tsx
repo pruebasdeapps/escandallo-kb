@@ -12,7 +12,8 @@ import {
   Menu,
   Sun,
   Moon,
-  Monitor
+  Monitor,
+  Database
 } from 'lucide-react';
 import { useStore } from '../store/useStore';
 import './Sidebar.css';
@@ -33,6 +34,18 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
     { icon: <BarChart3 size={20} />, label: 'Analítica', path: '/analytics' },
     { icon: <Settings size={20} />, label: 'Configuración', path: '/settings' },
   ];
+  
+  const handleExport = () => {
+    const data = localStorage.getItem('escandallo_data');
+    if (!data) return alert('No hay datos para exportar.');
+    const blob = new Blob([data], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `escandallo_backup_${new Date().toISOString().split('T')[0]}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
 
   return (
     <>
@@ -69,6 +82,11 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
             <PlusCircle size={20} />
             <span>Nuevo Escandallo</span>
           </NavLink>
+
+          <button className="nav-item backup-btn-sidebar" onClick={handleExport} title="Descargar Copia de Seguridad" style={{ width: '100%', border: 'none', background: 'transparent', cursor: 'pointer', padding: '0.75rem 1rem', display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
+            <Database size={20} />
+            <span>Copia de Seguridad</span>
+          </button>
           
           <div className="theme-selector">
             <button 

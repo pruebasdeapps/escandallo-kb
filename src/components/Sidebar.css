@@ -112,6 +112,11 @@
   background-color: var(--accent);
 }
 
+.backup-btn-sidebar:hover {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  color: white !important;
+}
+
 .theme-selector {
   display: flex;
   background-color: rgba(0, 0, 0, 0.2);

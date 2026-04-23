@@ -11,7 +11,7 @@ const RecipeDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const detailRef = useRef<HTMLDivElement>(null);
-  const { recipes, ingredients, deleteRecipe, updateRecipe, config } = useStore();
+  const { recipes, ingredients, deleteRecipe, getRecipesUsingItem, updateRecipe, config } = useStore();
   const recipe = recipes.find(r => r.id === id);
 
   if (!recipe) {
@@ -31,7 +31,16 @@ const RecipeDetail: React.FC = () => {
   };
 
   const handleDelete = () => {
-    if (window.confirm('¿Eliminar este escandallo?')) { deleteRecipe(recipe.id); navigate(recipe.type === 'plato' ? '/recipes' : '/semi-elaborated'); }
+    const dependentRecipes = getRecipesUsingItem(recipe.id);
+    if (dependentRecipes.length > 0) {
+      alert(`No se puede eliminar "${recipe.name}" porque está siendo utilizado como semielaborado en:\n\n- ${dependentRecipes.join('\n- ')}\n\nPor favor, quítalo primero de esas recetas.`);
+      return;
+    }
+
+    if (window.confirm('¿Eliminar este escandallo?')) { 
+      deleteRecipe(recipe.id); 
+      navigate(recipe.type === 'plato' ? '/recipes' : '/semi-elaborated'); 
+    }
   };
 
   const exportPDF = async () => {
@@ -57,8 +66,10 @@ const RecipeDetail: React.FC = () => {
       <nav className="detail-nav">
         <button onClick={() => navigate(-1)} className="btn-back"><ArrowLeft size={18} /> Volver</button>
         <div className="detail-actions">
-          <button onClick={() => window.print()} className="icon-btn" title="Imprimir"><Printer size={20} /></button>
-          <button onClick={exportPDF} className="icon-btn highlight" title="PDF"><Share2 size={20} /></button>
+          <button onClick={() => window.print()} className="btn-print-pro">
+            <Printer size={18} /> Imprimir Ficha Técnica
+          </button>
+          <button onClick={exportPDF} className="icon-btn highlight" title="Descargar PDF"><Share2 size={20} /></button>
           <button onClick={handleRegisterPrep} className="icon-btn success" title="Registrar Preparación"><CheckCircle2 size={20} /></button>
           <Link to={`/recipes/edit/${recipe.id}`} className="icon-btn edit" title="Editar"><Edit size={20} /></Link>
           <button onClick={handleDelete} className="icon-btn delete" title="Eliminar"><Trash2 size={20} /></button>

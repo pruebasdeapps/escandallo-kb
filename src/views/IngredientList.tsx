@@ -9,7 +9,15 @@ import './IngredientList.css';
 
 const IngredientList: React.FC = () => {
   const navigate = useNavigate();
-  const { ingredients, families, categories, addIngredient, updateIngredient, deleteIngredient } = useStore();
+  const { 
+    ingredients, 
+    deleteIngredient, 
+    addIngredient, 
+    updateIngredient, 
+    categories, 
+    families,
+    getRecipesUsingItem
+  } = useStore();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedFamily, setSelectedFamily] = useState('Todas');
   const [purchaseFilter, setPurchaseFilter] = useState('Todos');
@@ -83,6 +91,12 @@ const IngredientList: React.FC = () => {
   };
 
   const handleDelete = (id: string, name: string) => {
+    const dependentRecipes = getRecipesUsingItem(id);
+    if (dependentRecipes.length > 0) {
+      alert(`No se puede eliminar "${name}" porque está siendo utilizado en los siguientes escandallos:\n\n- ${dependentRecipes.join('\n- ')}\n\nPor favor, elimínalo primero de estas recetas para poder borrar el ingrediente.`);
+      return;
+    }
+    
     if (window.confirm(`¿Estás seguro de que deseas eliminar ${name}?`)) {
       deleteIngredient(id);
     }
