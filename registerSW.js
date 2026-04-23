@@ -1,0 +1,1 @@
+if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/escandallo-kb/sw.js', { scope: '/escandallo-kb/' })})}
