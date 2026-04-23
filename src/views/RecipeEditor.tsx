@@ -107,7 +107,7 @@ const RecipeEditor: React.FC = () => {
     addNewIngredientToBase({ id: newId, name: newIngData.name, price: newIngData.price, unit: newIngData.unit, category: 'Otros', family: 'Despensa', provider: newIngData.supermarket || 'Manual', waste: 0, allergens: [], purchaseType: 'Menor (Supermercado)', supermarket: newIngData.supermarket, priceHistory: [], lastUpdated: new Date().toISOString().split('T')[0] });
     updateMultipleIngredientFields(index, { id: newId, unit: newIngData.unit });
     setShowNewIngForm(null);
-    setNewIngData({ name: '', price: 0, unit: 'kg' as Unit, supermarket: '' });
+    setNewIngData({ name: '', price: 0, unit: 'kg' as Unit, supermarket: '', waste: 0 });
   };
 
   // ── Pasos helpers ──────────────────────────────────────────────

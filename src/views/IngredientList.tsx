@@ -1,9 +1,9 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useStore } from '../store/useStore';
 import { formatCurrency, formatPercentage } from '../utils/calculations';
 import type { Ingredient, Unit, PurchaseType } from '../types';
-import { Search, Filter, Plus, Trash2, X, ShoppingCart, Truck, Edit2, ArrowLeft, Calculator, Check } from 'lucide-react';
+import { Search, Filter, Plus, Trash2, X, ShoppingCart, Truck, Edit2, ArrowLeft, Calculator } from 'lucide-react';
 import DecimalInput from '../components/DecimalInput';
 import './IngredientList.css';
 
