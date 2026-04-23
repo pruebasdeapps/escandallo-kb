@@ -97,25 +97,34 @@ export const calculateRecipeCosts = (
   // 7. Coste total por lote
   const costPerBatch = grossCost + laborCost + (indirectCost * recipe.portions);
 
-  // 8. Precio sugerido basado en Food Cost objetivo
-  const targetFC = recipe.targetFoodCost || 30;
-  const suggestedPrice = targetFC > 0 ? totalProductionCost / (targetFC / 100) : 0;
+  // 7b. Gastos Generales (Overheads)
+  const overheadsPercent = recipe.overheads !== undefined ? recipe.overheads : (config?.defaultOverheads || 0);
+  const overheadsCost = totalProductionCost * (overheadsPercent / 100);
+  const finalTotalCost = totalProductionCost + overheadsCost;
+
+  // 8. Precio sugerido basado en Margen Objetivo (Markup)
+  const targetMargin = recipe.suggestedMargin !== undefined ? recipe.suggestedMargin : (config?.defaultMargin || 100);
+  const suggestedPrice = finalTotalCost * (1 + targetMargin / 100);
 
   // 9. Precios con/sin IVA
-  const iva = config?.iva || 10;
+  const iva = config?.iva !== undefined ? config.iva : 20;
   const priceWithoutVat = suggestedPrice;
   const priceWithVat = suggestedPrice * (1 + iva / 100);
 
   // 10. Márgenes
-  const grossMarginEuros = priceWithoutVat - totalProductionCost;
+  const grossMarginEuros = priceWithoutVat - finalTotalCost;
   const grossMarginPercent = priceWithoutVat > 0
     ? (grossMarginEuros / priceWithoutVat) * 100
+    : 0;
+  
+  const markupPercent = finalTotalCost > 0
+    ? (grossMarginEuros / finalTotalCost) * 100
     : 0;
 
   // 11. Food cost % real
   const foodCostPercentage = priceWithoutVat > 0
     ? (totalProductionCost / priceWithoutVat) * 100
-    : targetFC;
+    : 0;
 
   // 12. Beneficio por unidad
   const profitPerUnit = grossMarginEuros;
@@ -136,12 +145,14 @@ export const calculateRecipeCosts = (
     totalCost: totalProductionCost,
     directCost: directCostPerPortion,
     totalProductionCost,
+    finalTotalCost,
     costPerBatch,
     suggestedPrice,
     priceWithoutVat,
     priceWithVat,
     grossMarginEuros,
     grossMarginPercent,
+    markupPercent,
     foodCostPercentage,
     profitPerUnit,
     breakEvenUnits

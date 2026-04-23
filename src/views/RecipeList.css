@@ -177,7 +177,7 @@
   }
 }
 
-@media (max-width: 1600px) {
+@media (max-width: 1400px) {
   .recipe-grid { grid-template-columns: repeat(4, 1fr); }
 }
 

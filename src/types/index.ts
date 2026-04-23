@@ -265,6 +265,7 @@ export interface CostCalculation {
   totalCost: number;
   directCost: number;
   totalProductionCost: number;
+  finalTotalCost: number;
   costPerBatch: number;
 
   // Precio de venta
@@ -275,6 +276,7 @@ export interface CostCalculation {
   // Márgenes
   grossMarginEuros: number;
   grossMarginPercent: number;
+  markupPercent: number;
   foodCostPercentage: number;
 
   // Control

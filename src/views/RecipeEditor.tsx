@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useStore } from '../store/useStore';
 import type { Recipe, RecipeIngredient, RecipeType, Unit, LaborItem, IndirectCost, ElaborationPhase } from '../types';
-import { Save, X, Plus, Trash2, ChevronDown, ChevronUp } from 'lucide-react';
+import { Save, X, Plus, Trash2, ChevronDown, ChevronUp, Calculator } from 'lucide-react';
 import SearchableSelect from '../components/SearchableSelect';
 import DecimalInput from '../components/DecimalInput';
 import './RecipeEditor.css';
@@ -31,7 +31,7 @@ const RecipeEditor: React.FC = () => {
 
   const [recipe, setRecipe] = useState<Partial<Recipe>>({
     name: '', type: 'plato', category: categories[0] || '', image: `https://picsum.photos/seed/${Math.random()}/800/600`,
-    portions: 1, portionUnit: 'ración', ingredients: [], steps: [''], targetFoodCost: 30, suggestedMargin: 70,
+    portions: 1, portionUnit: 'ración', ingredients: [], steps: [''], targetFoodCost: 50, suggestedMargin: 100,
     prepHistory: [], totalPreps: 0, version: 1, approvalStatus: 'borrador',
     createdAt: new Date().toISOString().split('T')[0],
     laborItems: [], indirectCosts: indirectDefaults.map(d => ({ concept: d.concept, amount: d.defaultAmount })),
@@ -39,12 +39,36 @@ const RecipeEditor: React.FC = () => {
   });
 
   const [showNewIngForm, setShowNewIngForm] = useState<number | null>(null);
-  const [newIngData, setNewIngData] = useState({ name: '', price: 0, unit: 'kg' as Unit, supermarket: '' });
+  const [newIngData, setNewIngData] = useState({ name: '', price: 0, unit: 'kg' as Unit, supermarket: '', waste: 0 });
+  const [showWasteCalc, setShowWasteCalc] = useState(false);
+  const [wasteCalc, setWasteCalc] = useState({ gross: 0, net: 0 });
+
+  // Helper: trunca cualquier cadena ISO a solo YYYY-MM-DD para los <input type="date">
+  const toDateInput = (val?: string): string => {
+    if (!val) return '';
+    return val.substring(0, 10); // '2026-04-22T20:...' -> '2026-04-22'
+  };
 
   useEffect(() => {
     if (id) {
       const existing = recipes.find(r => r.id === id);
-      if (existing) setRecipe(existing);
+      if (existing) {
+        setRecipe({
+          ...existing,
+          // Normalizar fechas a formato YYYY-MM-DD para los campos <input type="date">
+          createdAt: toDateInput(existing.createdAt),
+          revisedAt: toDateInput(existing.revisedAt),
+          approvedAt: toDateInput(existing.approvedAt),
+          // Asegurar arrays presentes aunque la receta no los tenga
+          laborItems: existing.laborItems || [],
+          indirectCosts: existing.indirectCosts || indirectDefaults.map(d => ({ concept: d.concept, amount: d.defaultAmount })),
+          steps: existing.steps || [],
+          elaborationPhases: existing.elaborationPhases || [],
+          equipment: existing.equipment || [],
+          criticalPoints: existing.criticalPoints || [],
+          prepHistory: existing.prepHistory || [],
+        });
+      }
     }
   }, [id, recipes]);
 
@@ -138,7 +162,10 @@ const RecipeEditor: React.FC = () => {
         </div>
         <div className="form-row">
           <div className="form-group flex-1"><label>Raciones / Rendimiento</label><DecimalInput value={recipe.portions || 0} onChangeValue={val => setRecipe({ ...recipe, portions: val })} /></div>
-          <div className="form-group flex-1"><label>Food Cost Objetivo (%)</label><DecimalInput value={recipe.targetFoodCost || 0} onChangeValue={val => setRecipe({ ...recipe, targetFoodCost: val })} /></div>
+          <div className="form-group flex-1"><label>Margen de Ganancia (%)</label><DecimalInput value={recipe.suggestedMargin !== undefined ? recipe.suggestedMargin : 100} onChangeValue={val => setRecipe({ ...recipe, suggestedMargin: val })} /></div>
+          <div className="form-group flex-1"><label>Gastos Generales (%)</label><DecimalInput value={recipe.overheads !== undefined ? recipe.overheads : (config.defaultOverheads || 0)} onChangeValue={val => setRecipe({ ...recipe, overheads: val })} /></div>
+        </div>
+        <div className="form-row">
           <div className="form-group flex-1"><label>Peso Bruto (g)</label><DecimalInput value={recipe.grossWeight || ''} onChangeValue={val => setRecipe({ ...recipe, grossWeight: val })} placeholder="Opcional" /></div>
           <div className="form-group flex-1"><label>Peso Neto (g)</label><DecimalInput value={recipe.netWeight || ''} onChangeValue={val => setRecipe({ ...recipe, netWeight: val })} placeholder="Opcional" /></div>
         </div>
@@ -155,7 +182,7 @@ const RecipeEditor: React.FC = () => {
           </div>
           <div className="form-group flex-1"><label>Responsable</label><input type="text" value={recipe.approvedBy || ''} onChange={e => setRecipe({ ...recipe, approvedBy: e.target.value })} placeholder="Nombre completo" /></div>
           <div className="form-group flex-1"><label>Firma Digital</label><input type="text" value={recipe.approvalSignature || ''} onChange={e => setRecipe({ ...recipe, approvalSignature: e.target.value })} placeholder="Nombre para firma" /></div>
-          <div className="form-group flex-1"><label>Fecha Aprobación</label><input type="date" value={recipe.approvedAt || ''} onChange={e => setRecipe({ ...recipe, approvedAt: e.target.value })} /></div>
+          <div className="form-group flex-1"><label>Fecha Aprobación</label><input type="date" value={toDateInput(recipe.approvedAt)} onChange={e => setRecipe({ ...recipe, approvedAt: e.target.value })} /></div>
         </div>
       </AccordionSection>
 
@@ -195,6 +222,25 @@ const RecipeEditor: React.FC = () => {
                     <div className="inline-price">
                       <DecimalInput placeholder="Precio" value={newIngData.price || ''} onChangeValue={val => setNewIngData({ ...newIngData, price: val })} />
                       <select value={newIngData.unit} onChange={e => setNewIngData({ ...newIngData, unit: e.target.value as Unit })}><option value="kg">kg</option><option value="L">L</option><option value="ud">ud</option></select>
+                    </div>
+                    <div className="inline-waste-row" style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+                      <div style={{ display: 'flex', gap: '0.25rem', alignItems: 'center' }}>
+                        <DecimalInput placeholder="Merma %" value={newIngData.waste || ''} onChangeValue={val => setNewIngData({ ...newIngData, waste: val })} />
+                        <button className="btn-icon-sm" onClick={() => setShowWasteCalc(!showWasteCalc)}><Calculator size={14} /></button>
+                      </div>
+                      {showWasteCalc && (
+                        <div className="inline-calc-pop" style={{ padding: '0.5rem', background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: '4px', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                          <DecimalInput placeholder="Bruto" value={wasteCalc.gross || ''} onChangeValue={val => setWasteCalc({ ...wasteCalc, gross: val })} />
+                          <DecimalInput placeholder="Neto" value={wasteCalc.net || ''} onChangeValue={val => setWasteCalc({ ...wasteCalc, net: val })} />
+                          <button className="btn-save-inline" style={{ padding: '0.25rem' }} onClick={() => {
+                            if (wasteCalc.gross > 0) {
+                              const w = ((wasteCalc.gross - wasteCalc.net) / wasteCalc.gross) * 100;
+                              setNewIngData({ ...newIngData, waste: parseFloat(w.toFixed(2)) });
+                              setShowWasteCalc(false);
+                            }
+                          }}>OK</button>
+                        </div>
+                      )}
                     </div>
                     <select value={newIngData.supermarket || ''} onChange={e => { if (e.target.value === 'ADD_NEW') { const n = prompt('Supermercado:'); if (n) setNewIngData({ ...newIngData, supermarket: n }); } else setNewIngData({ ...newIngData, supermarket: e.target.value }); }}>
                       <option value="">Súper...</option><option value="Mercadona">Mercadona</option><option value="Día">Día</option><option value="Aldi">Aldi</option><option value="Covirán">Covirán</option><option value="ADD_NEW">+ Nuevo</option>
@@ -314,7 +360,7 @@ const RecipeEditor: React.FC = () => {
         </div>
         <div className="form-row">
           <div className="form-group flex-1"><label>Instrucciones de Conservación</label><input type="text" value={recipe.conservationNotes || ''} onChange={e => setRecipe({ ...recipe, conservationNotes: e.target.value })} /></div>
-          <div className="form-group flex-1"><label>Próxima Revisión</label><input type="date" value={recipe.nextRevisionDate || ''} onChange={e => setRecipe({ ...recipe, nextRevisionDate: e.target.value })} /></div>
+          <div className="form-group flex-1"><label>Próxima Revisión</label><input type="date" value={toDateInput(recipe.nextRevisionDate)} onChange={e => setRecipe({ ...recipe, nextRevisionDate: e.target.value })} /></div>
         </div>
       </AccordionSection>
     </div>

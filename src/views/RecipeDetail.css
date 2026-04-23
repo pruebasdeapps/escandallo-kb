@@ -37,7 +37,7 @@
 .allergen-tag { background: #fef3c7; color: #92400e; padding: 0.25rem 0.6rem; border-radius: 6px; font-size: 0.72rem; font-weight: 600; }
 
 /* Cost Cards */
-.costs-summary-cards { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0.75rem; }
+.costs-summary-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0.75rem; }
 .cost-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 1rem; text-align: center; }
 .cost-card span { font-size: 0.72rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; }
 .cost-card h2 { font-size: 1.2rem; font-weight: 800; margin: 0.25rem 0; }
@@ -46,6 +46,10 @@
 .cost-card.highlight h2 { color: var(--accent); }
 .cost-card.accent { border-color: var(--accent); }
 .cost-card.accent h2 { color: var(--accent); }
+.cost-card.accent-dark { border-color: #1e3a8a; background: rgba(30, 58, 138, 0.05); }
+.cost-card.accent-dark h2 { color: #1e3a8a; }
+.cost-card.success { border-color: var(--success); background: rgba(16, 185, 129, 0.05); }
+.cost-card.success h2 { color: var(--success); }
 .danger { color: var(--danger) !important; }
 .success { color: var(--success) !important; }
 

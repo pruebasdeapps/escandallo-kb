@@ -58,6 +58,8 @@ const Settings: React.FC = () => {
   const { config, updateConfig } = useStore();
   
   const [localConfig, setLocalConfig] = useState(config);
+  const [calcRowIdx, setCalcRowIdx] = useState<number | null>(null);
+  const [calcData, setCalcData] = useState({ invoice: 0, portions: 0 });
   const [isSaved, setIsSaved] = useState(false);
 
   useEffect(() => { if (config) setLocalConfig(config); }, [config]);
@@ -171,11 +173,11 @@ const Settings: React.FC = () => {
             </div>
             <div className="form-group">
               <label>IVA por defecto (%)</label>
-              <DecimalInput value={localConfig.iva || 20} onChangeValue={val => setLocalConfig({ ...localConfig, iva: val })} />
+              <DecimalInput value={localConfig.iva !== undefined ? localConfig.iva : 20} onChangeValue={val => setLocalConfig({ ...localConfig, iva: val })} />
             </div>
             <div className="form-group">
               <label>Margen Objetivo (%)</label>
-              <DecimalInput value={localConfig.defaultMargin || 70} onChangeValue={val => setLocalConfig({ ...localConfig, defaultMargin: val })} />
+              <DecimalInput value={localConfig.defaultMargin !== undefined ? localConfig.defaultMargin : 100} onChangeValue={val => setLocalConfig({ ...localConfig, defaultMargin: val })} />
             </div>
             <div className="form-group">
               <label>Costes Generales (%)</label>
@@ -274,23 +276,47 @@ const Settings: React.FC = () => {
             <p className="hint mb-1">Estos costes se cargarán automáticamente en cada nuevo escandallo. El importe es por unidad de venta.</p>
             <div className="editable-list">
               {indirectDefaults.map((item, idx) => (
-                <div key={idx} className="editable-row">
-                  <input
-                    type="text"
-                    placeholder="Concepto"
-                    value={item.concept}
-                    onChange={e => updateIndirectDefault(idx, 'concept', e.target.value)}
-                    className="flex-2"
-                  />
-                  <div className="input-with-suffix">
-                    <DecimalInput
-                      placeholder="0.00"
-                      value={item.defaultAmount || ''}
-                      onChangeValue={val => updateIndirectDefault(idx, 'defaultAmount', val)}
+                <div key={idx} style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', background: 'var(--bg-secondary)', padding: '0.5rem', borderRadius: '4px', marginBottom: '0.5rem' }}>
+                  <div className="editable-row" style={{ margin: 0, padding: 0, background: 'transparent', border: 'none' }}>
+                    <input
+                      type="text"
+                      placeholder="Concepto"
+                      value={item.concept}
+                      onChange={e => updateIndirectDefault(idx, 'concept', e.target.value)}
+                      className="flex-2"
                     />
-                    <span className="suffix">€/ud</span>
+                    <div className="input-with-suffix">
+                      <DecimalInput
+                        placeholder="0.00"
+                        value={item.defaultAmount || ''}
+                        onChangeValue={val => updateIndirectDefault(idx, 'defaultAmount', val)}
+                      />
+                      <span className="suffix">€/ud</span>
+                    </div>
+                    <button className="btn-icon-sm" onClick={() => setCalcRowIdx(calcRowIdx === idx ? null : idx)} title="Calcular desde Factura"><Calculator size={14} /></button>
+                    <button className="btn-icon-danger" onClick={() => removeIndirectDefault(idx)}><Trash2 size={14} /></button>
                   </div>
-                  <button className="btn-icon-danger" onClick={() => removeIndirectDefault(idx)}><Trash2 size={14} /></button>
+                  {calcRowIdx === idx && (
+                    <div style={{ display: 'flex', gap: '0.5rem', padding: '0.5rem', background: 'var(--bg-card)', borderRadius: '4px', alignItems: 'flex-end' }}>
+                      <div style={{ flex: 1 }}>
+                        <label style={{ fontSize: '0.75rem' }}>Factura Total (€)</label>
+                        <DecimalInput value={calcData.invoice || ''} onChangeValue={val => setCalcData(prev => ({ ...prev, invoice: val }))} />
+                      </div>
+                      <div style={{ flex: 1 }}>
+                        <label style={{ fontSize: '0.75rem' }}>Raciones/Mes</label>
+                        <DecimalInput value={calcData.portions || ''} onChangeValue={val => setCalcData(prev => ({ ...prev, portions: val }))} />
+                      </div>
+                      <button className="btn-secondary btn-sm" onClick={() => {
+                        if (calcData.invoice > 0 && calcData.portions > 0) {
+                          const costPerPortion = calcData.invoice / calcData.portions;
+                          updateIndirectDefault(idx, 'defaultAmount', parseFloat(costPerPortion.toFixed(4)));
+                          setCalcRowIdx(null);
+                        } else {
+                          alert('Introduce valores válidos mayores a 0.');
+                        }
+                      }}>Aplicar</button>
+                    </div>
+                  )}
                 </div>
               ))}
               {indirectDefaults.length === 0 && (

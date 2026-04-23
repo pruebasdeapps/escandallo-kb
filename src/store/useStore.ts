@@ -5,13 +5,13 @@ export type Theme = 'light' | 'dark' | 'system';
 
 const DEFAULT_CONFIG: AppConfig = {
   currency: '€',
-  defaultMargin: 70,
+  defaultMargin: 100,
   defaultOverheads: 15,
   iva: 20,
   formulas: {
     realCost: 'Precio Base / (1 - Merma / 100)',
     portionCost: 'Suma(Costes Ingredientes) / Raciones',
-    suggestedPrice: 'Coste Total / (Food Cost % / 100)'
+    suggestedPrice: 'Coste Total * (1 + (Margen % / 100))'
   },
   laborProfiles: [
     { id: 'lp-1', name: 'Jefe de Cocina', costPerHour: 18 },
@@ -50,9 +50,16 @@ interface AppState extends AppData {
  */
 const deepMergeConfig = (defaults: AppConfig, saved: Partial<AppConfig> | undefined): AppConfig => {
   if (!saved) return { ...defaults };
+  
+  // Forzar nuevos valores por defecto si los guardados son los antiguos o no existen
+  const iva = (saved.iva === undefined || saved.iva === 10) ? defaults.iva : saved.iva;
+  const defaultMargin = (saved.defaultMargin === undefined || saved.defaultMargin === 70) ? defaults.defaultMargin : saved.defaultMargin;
+
   return {
     ...defaults,
     ...saved,
+    iva,
+    defaultMargin,
     formulas: {
       ...defaults.formulas,
       ...(saved.formulas || {})
@@ -93,12 +100,40 @@ export const useStore = create<AppState>((set, get) => ({
       const localData = localStorage.getItem('escandallo_data');
       if (localData) {
         const parsed = JSON.parse(localData);
+        
+        // Fusión inteligente: añadir ingredientes/recetas nuevas de lista.json que no estén en local
+        const newIngredients = data.ingredients.filter(di => !parsed.ingredients.some((pi: any) => pi.id === di.id));
+        parsed.ingredients = [...parsed.ingredients, ...newIngredients];
+
+        // Fusión de recetas: añadir nuevas y sobreescribir los 'mock-'
+        let updatedRecipes = [...parsed.recipes];
+        
+        // 1. Añadir las nuevas
+        const newRecipes = data.recipes.filter(dr => !updatedRecipes.some(pr => pr.id === dr.id));
+        updatedRecipes = [...updatedRecipes, ...newRecipes];
+
+        // 2. Sobreescribir las que empiezan por 'mock-' con las versiones del JSON (para los ejemplos hiper-detallados)
+        updatedRecipes = updatedRecipes.map(pr => {
+          if (pr.id.startsWith('mock-')) {
+            const masterMock = data.recipes.find(dr => dr.id === pr.id);
+            return masterMock || pr;
+          }
+          return pr;
+        });
+        
+        parsed.recipes = updatedRecipes;
+
         const mergedConfig = deepMergeConfig(DEFAULT_CONFIG, parsed.config);
-        set({ ...parsed, config: mergedConfig, isLoading: false });
+        
+        const finalState = { ...parsed, config: mergedConfig, isLoading: false };
+        set(finalState);
+        localStorage.setItem('escandallo_data', JSON.stringify(finalState)); // Guardar la fusión
         applyTheme(parsed.theme || 'light');
       } else {
         const mergedConfig = deepMergeConfig(DEFAULT_CONFIG, data.config);
-        set({ ...data, config: mergedConfig, isLoading: false });
+        const finalState = { ...data, config: mergedConfig, isLoading: false };
+        set(finalState);
+        localStorage.setItem('escandallo_data', JSON.stringify(finalState));
         applyTheme('light');
       }
     } catch (err) {

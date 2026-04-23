@@ -55,11 +55,15 @@
 .bar-fill.success { background-color: var(--success); }
 
 .bar-value {
-  width: 80px;
-  font-size: 0.8rem;
+  width: 90px;
+  font-size: 0.7rem;
   font-weight: 600;
   text-align: right;
+  line-height: 1.2;
 }
+
+.markup-val { color: var(--success); font-weight: 800; }
+.margin-val { color: var(--text-muted); font-size: 0.65rem; }
 
 .info-list {
   display: flex;

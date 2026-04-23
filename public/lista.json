@@ -8954,7 +8954,7 @@
       "name": "Fumet de Pescado (Base)",
       "type": "semielaborado",
       "category": "Bases",
-      "image": "https://picsum.photos/seed/fumet/800/600",
+      "image": "https://images.unsplash.com/photo-1556910103-1c02745a80f0?w=600&q=80",
       "portions": 10,
       "portionUnit": "L",
       "ingredients": [
@@ -8991,7 +8991,7 @@
       "name": "Arroz de Gambones",
       "type": "plato",
       "category": "Arroces",
-      "image": "https://picsum.photos/seed/arroz/800/600",
+      "image": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80",
       "portions": 1,
       "portionUnit": "ración",
       "ingredients": [
@@ -9035,7 +9035,7 @@
       "name": "Coulant de Chocolate",
       "type": "plato",
       "category": "Postres",
-      "image": "https://picsum.photos/seed/coulant/800/600",
+      "image": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&q=80",
       "portions": 6,
       "portionUnit": "unidades",
       "ingredients": [
@@ -9075,451 +9075,166 @@
       "lastUpdated": "2024-04-20"
     },
     {
-      "id": "mock-1",
-      "name": "Croquetas de Jamón Ibérico",
+      "id": "mock-detailed-1",
+      "name": "Solomillo Wellington Profesional",
       "type": "plato",
-      "category": "Tapas",
-      "image": "https://images.unsplash.com/photo-1626002167732-b7e532a818c5?auto=format&fit=crop&q=80&w=600",
-      "portions": 20,
+      "category": "Carnes",
+      "image": "https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&q=80&w=600",
+      "portions": 4,
       "portionUnit": "ración",
-      "targetFoodCost": 25,
-      "suggestedMargin": 75,
-      "ingredients": [
+      "targetFoodCost": 30,
+      "suggestedMargin": 70,
+      "code": "CAR-010",
+      "version": 3,
+      "createdAt": "2023-01-10T08:00:00Z",
+      "revisedAt": "2026-04-22T20:26:15.730Z",
+      "saleUnit": "ración",
+      "approvalStatus": "aprobado",
+      "approvedBy": "Chef Ejecutivo",
+      "approvedAt": "2026-04-22T20:26:15.730Z",
+      "approvalSignature": "Chef Master",
+      "description": "Corte central de solomillo de ternera envuelto en duxelles de champiñones, jamón y hojaldre crujiente.",
+      "qualityStandard": "Punto de la carne estrictamente medium-rare (52-54ºC interno). Hojaldre dorado sin humedad en la base.",
+      "finalPresentation": "Corte transversal limpio de 4cm de grosor, salsa demi-glace en espejo en el plato caliente.",
+      "saleFormat": "Carta Especial",
+      "grossWeight": 1400,
+      "netWeight": 1100,
+      "exactPortionWeight": 250,
+      "tolerancePercent": 2,
+      "servingTemp": "65 °C",
+      "conservation": "Refrigeración 2-4ºC",
+      "shelfLife": "2 días crudo, consumo inmediato cocinado",
+      "allergenWarnings": "Contaminación por harina en la mesa de estirado.",
+      "platingNotes": "Plato trinchero precalentado a 70ºC.",
+      "totalTime": 120,
+      "elaborationPhases": [
         {
-          "id": "ing-csv-166",
-          "amount": 1,
-          "unit": "L",
-          "yieldPercent": 100
+          "name": "Sellado carne",
+          "duration": 5,
+          "temperature": "220 °C"
         },
         {
-          "id": "ing-012",
-          "amount": 0.1,
-          "unit": "kg",
-          "yieldPercent": 100
+          "name": "Duxelles",
+          "duration": 25,
+          "temperature": "Fuego medio"
         },
         {
-          "id": "ing-002",
-          "amount": 0.1,
-          "unit": "kg",
-          "yieldPercent": 100
+          "name": "Armado",
+          "duration": 15,
+          "temperature": "Mesa fría"
         },
         {
-          "id": "ing-csv-95",
-          "amount": 0.2,
-          "unit": "kg",
-          "grossAmount": 0.25,
-          "yieldPercent": 80
+          "name": "Horneado",
+          "duration": 35,
+          "temperature": "200 °C"
         }
       ],
-      "steps": [
-        "Derretir mantequilla",
-        "Añadir harina (roux)",
-        "Leche poco a poco",
-        "Añadir jamón",
-        "Enfriar y bolear"
-      ],
-      "totalTime": 90,
-      "lastUpdated": "2026-04-22T20:22:41.462Z"
-    },
-    {
-      "id": "mock-2",
-      "name": "Tortilla de Patatas Tradicional",
-      "type": "plato",
-      "category": "Tapas",
-      "image": "https://images.unsplash.com/photo-1542342816-9227440ef416?auto=format&fit=crop&q=80&w=600",
-      "portions": 6,
-      "portionUnit": "ración",
-      "targetFoodCost": 20,
-      "suggestedMargin": 80,
       "ingredients": [
         {
-          "id": "ing-csv-13",
+          "id": "ing-005",
           "amount": 0.8,
           "unit": "kg",
           "grossAmount": 1,
-          "yieldPercent": 80
+          "yieldPercent": 80,
+          "notes": "Limpiar cordón y espejuelo"
         },
         {
-          "id": "ing-008",
-          "amount": 6,
-          "unit": "ud",
-          "yieldPercent": 100
-        },
-        {
-          "id": "ing-006",
-          "amount": 0.2,
-          "unit": "kg",
-          "grossAmount": 0.25,
-          "yieldPercent": 80
-        },
-        {
-          "id": "ing-001",
-          "amount": 0.2,
-          "unit": "L",
-          "yieldPercent": 100
-        },
-        {
-          "id": "ing-003",
-          "amount": 0.01,
-          "unit": "kg",
-          "yieldPercent": 100
-        }
-      ],
-      "steps": [
-        "Pelar y pochar patatas y cebolla",
-        "Batir huevos",
-        "Mezclar y cuajar",
-        "Servir"
-      ],
-      "totalTime": 45,
-      "lastUpdated": "2026-04-22T20:22:41.463Z"
-    },
-    {
-      "id": "mock-3",
-      "name": "Salmorejo Cordobés",
-      "type": "plato",
-      "category": "Entrantes",
-      "image": "https://images.unsplash.com/photo-1574653835061-6d911b339f40?auto=format&fit=crop&q=80&w=600",
-      "portions": 4,
-      "portionUnit": "ración",
-      "targetFoodCost": 25,
-      "suggestedMargin": 75,
-      "ingredients": [
-        {
-          "id": "ing-csv-220",
-          "amount": 1,
-          "unit": "kg",
-          "grossAmount": 1.1,
-          "yieldPercent": 90.9090909090909
-        },
-        {
-          "id": "ing-csv-36",
-          "amount": 0.2,
-          "unit": "kg",
-          "yieldPercent": 100
-        },
-        {
-          "id": "ing-001",
-          "amount": 0.15,
-          "unit": "L",
-          "yieldPercent": 100
-        },
-        {
-          "id": "ing-csv-50",
-          "amount": 0.01,
-          "unit": "kg",
-          "grossAmount": 0.012,
-          "yieldPercent": 83.33333333333334
-        },
-        {
-          "id": "ing-003",
-          "amount": 0.005,
-          "unit": "kg",
-          "yieldPercent": 100
-        }
-      ],
-      "steps": [
-        "Lavar y triturar tomates",
-        "Añadir pan, ajo y sal",
-        "Emulsionar con aceite",
-        "Servir frío"
-      ],
-      "totalTime": 20,
-      "lastUpdated": "2026-04-22T20:22:41.463Z"
-    },
-    {
-      "id": "mock-4",
-      "name": "Tarta de Queso (Cheesecake)",
-      "type": "plato",
-      "category": "Postres",
-      "image": "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&q=80&w=600",
-      "portions": 8,
-      "portionUnit": "porción",
-      "targetFoodCost": 28,
-      "suggestedMargin": 72,
-      "ingredients": [
-        {
-          "id": "ing-csv-192",
-          "amount": 0.6,
-          "unit": "kg",
-          "yieldPercent": 100
-        },
-        {
-          "id": "ing-007",
+          "id": "ing-csv-336",
           "amount": 0.4,
-          "unit": "L",
-          "yieldPercent": 100
-        },
-        {
-          "id": "ing-csv-413",
-          "amount": 0.15,
           "unit": "kg",
-          "yieldPercent": 100
+          "grossAmount": 0.45,
+          "yieldPercent": 88.89,
+          "notes": "Picar brunoise fina"
         },
         {
-          "id": "ing-008",
-          "amount": 4,
-          "unit": "ud",
-          "yieldPercent": 100
-        },
-        {
-          "id": "ing-csv-43",
-          "amount": 0.15,
-          "unit": "kg",
-          "yieldPercent": 100
-        },
-        {
-          "id": "ing-012",
-          "amount": 0.08,
-          "unit": "kg",
-          "yieldPercent": 100
-        }
-      ],
-      "steps": [
-        "Triturar galletas y mezclar con mantequilla para base",
-        "Mezclar queso, nata, azúcar y huevos",
-        "Hornear 40 mins a 180C",
-        "Dejar enfriar"
-      ],
-      "totalTime": 60,
-      "lastUpdated": "2026-04-22T20:22:41.463Z"
-    },
-    {
-      "id": "mock-5",
-      "name": "Ceviche de Corvina Clásico",
-      "type": "plato",
-      "category": "Pescados",
-      "image": "https://images.unsplash.com/photo-1596796362402-9ee633b43eb7?auto=format&fit=crop&q=80&w=600",
-      "portions": 2,
-      "portionUnit": "ración",
-      "targetFoodCost": 32,
-      "suggestedMargin": 68,
-      "ingredients": [
-        {
-          "id": "ing-csv-439",
+          "id": "ing-csv-389",
           "amount": 0.3,
           "unit": "kg",
-          "grossAmount": 0.5,
-          "yieldPercent": 60
+          "grossAmount": 0.3,
+          "yieldPercent": 100,
+          "notes": "Grosor de 3mm"
         },
         {
-          "id": "ing-csv-306",
-          "amount": 0.1,
-          "unit": "L",
-          "yieldPercent": 100
-        },
-        {
-          "id": "ing-006",
-          "amount": 0.05,
-          "unit": "kg",
-          "grossAmount": 0.06,
-          "yieldPercent": 83.33333333333334
-        },
-        {
-          "id": "ing-csv-404",
-          "amount": 0.01,
-          "unit": "kg",
-          "yieldPercent": 100
-        },
-        {
-          "id": "ing-csv-364",
-          "amount": 0.01,
-          "unit": "kg",
-          "yieldPercent": 100
-        },
-        {
-          "id": "ing-003",
-          "amount": 0.005,
-          "unit": "kg",
-          "yieldPercent": 100
-        }
-      ],
-      "steps": [
-        "Cortar pescado en dados",
-        "Exprimir limas",
-        "Mezclar todo",
-        "Macerar 5 mins",
-        "Servir con cebolla y cilantro"
-      ],
-      "totalTime": 15,
-      "lastUpdated": "2026-04-22T20:22:41.463Z"
-    },
-    {
-      "id": "mock-6",
-      "name": "Curry de Pollo y Coco",
-      "type": "plato",
-      "category": "Carnes",
-      "image": "https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&q=80&w=600",
-      "portions": 4,
-      "portionUnit": "ración",
-      "targetFoodCost": 28,
-      "suggestedMargin": 72,
-      "ingredients": [
-        {
-          "id": "ing-csv-66",
-          "amount": 0.6,
-          "unit": "kg",
-          "grossAmount": 0.65,
-          "yieldPercent": 92.3076923076923
-        },
-        {
-          "id": "ing-csv-317",
-          "amount": 0.4,
-          "unit": "L",
-          "yieldPercent": 100
-        },
-        {
-          "id": "ing-csv-453",
-          "amount": 0.05,
-          "unit": "kg",
-          "yieldPercent": 100
-        },
-        {
-          "id": "ing-006",
+          "id": "ing-csv-95",
           "amount": 0.15,
           "unit": "kg",
-          "grossAmount": 0.18,
-          "yieldPercent": 83.33333333333334
+          "grossAmount": 0.15,
+          "yieldPercent": 100,
+          "notes": "Lonchas finas sin grasa lateral"
         },
         {
-          "id": "ing-001",
-          "amount": 0.05,
-          "unit": "L",
-          "yieldPercent": 100
-        },
-        {
-          "id": "ing-011",
-          "amount": 0.2,
-          "unit": "kg",
-          "yieldPercent": 100
+          "id": "ing-008",
+          "amount": 2,
+          "unit": "ud",
+          "grossAmount": 2,
+          "yieldPercent": 100,
+          "notes": "Batido para pintar"
         }
       ],
-      "steps": [
-        "Dorar pollo",
-        "Pochar cebolla y especias",
-        "Añadir leche de coco y hervir",
-        "Servir con arroz"
-      ],
-      "totalTime": 35,
-      "lastUpdated": "2026-04-22T20:22:41.463Z"
-    },
-    {
-      "id": "mock-7",
-      "name": "Lasaña Tradicional de Carne",
-      "type": "plato",
-      "category": "Carnes",
-      "image": "https://images.unsplash.com/photo-1574894709920-11b28e7367e3?auto=format&fit=crop&q=80&w=600",
-      "portions": 6,
-      "portionUnit": "ración",
-      "targetFoodCost": 25,
-      "suggestedMargin": 75,
-      "ingredients": [
+      "laborOverrides": true,
+      "customLaborItems": [
         {
-          "id": "ing-csv-60",
-          "amount": 0.5,
-          "unit": "kg",
-          "yieldPercent": 100
+          "concept": "Limpieza de carne",
+          "minutes": 15,
+          "costPerHour": 18
         },
         {
-          "id": "ing-csv-22",
-          "amount": 0.25,
-          "unit": "kg",
-          "yieldPercent": 100
+          "concept": "Montaje manual",
+          "minutes": 20,
+          "costPerHour": 18
         },
         {
-          "id": "ing-csv-226",
-          "amount": 0.4,
-          "unit": "L",
-          "yieldPercent": 100
-        },
-        {
-          "id": "ing-006",
-          "amount": 0.15,
-          "unit": "kg",
-          "yieldPercent": 100
-        },
-        {
-          "id": "ing-csv-166",
-          "amount": 0.5,
-          "unit": "L",
-          "yieldPercent": 100
-        },
-        {
-          "id": "ing-csv-181",
-          "amount": 0.15,
-          "unit": "kg",
-          "yieldPercent": 100
+          "concept": "Horneado",
+          "minutes": 5,
+          "costPerHour": 15
         }
       ],
-      "steps": [
-        "Preparar boloñesa",
-        "Preparar bechamel",
-        "Montar capas",
-        "Hornear y gratinar"
-      ],
-      "totalTime": 80,
-      "lastUpdated": "2026-04-22T20:22:41.463Z"
-    },
-    {
-      "id": "mock-8",
-      "name": "Salsa Brava Casera",
-      "type": "semielaborado",
-      "category": "Salsas",
-      "image": "https://images.unsplash.com/photo-1607532941433-304659e8198a?auto=format&fit=crop&q=80&w=600",
-      "portions": 10,
-      "portionUnit": "ración",
-      "targetFoodCost": 15,
-      "suggestedMargin": 85,
-      "ingredients": [
+      "overridesIndirect": true,
+      "customIndirectCosts": [
         {
-          "id": "ing-001",
-          "amount": 0.1,
-          "unit": "L",
-          "yieldPercent": 100
+          "concept": "Papel de horno especial",
+          "amount": 0.2
         },
         {
-          "id": "ing-csv-50",
-          "amount": 0.02,
-          "unit": "kg",
-          "yieldPercent": 100
-        },
-        {
-          "id": "ing-csv-361",
-          "amount": 0.01,
-          "unit": "kg",
-          "yieldPercent": 100
-        },
-        {
-          "id": "ing-002",
-          "amount": 0.02,
-          "unit": "kg",
-          "yieldPercent": 100
-        },
-        {
-          "id": "ing-csv-457",
-          "amount": 0.5,
-          "unit": "L",
-          "yieldPercent": 100
-        },
-        {
-          "id": "ing-003",
-          "amount": 0.005,
-          "unit": "kg",
-          "yieldPercent": 100
+          "concept": "Merma de horneado (gas)",
+          "amount": 0.5
         }
       ],
-      "steps": [
-        "Sofreír ajo",
-        "Añadir pimentón y harina (roux rojo)",
-        "Incorporar caldo hirviendo poco a poco",
-        "Triturar y colar"
+      "prepHistory": [],
+      "totalPreps": 0,
+      "lastUpdated": "2026-04-22T20:26:15.730Z",
+      "steps": [],
+      "laborItems": [
+        {
+          "profile": "Limpieza de carne",
+          "minutes": 15,
+          "costPerHour": 18
+        },
+        {
+          "profile": "Montaje manual",
+          "minutes": 20,
+          "costPerHour": 18
+        },
+        {
+          "profile": "Horneado",
+          "minutes": 5,
+          "costPerHour": 15
+        }
       ],
-      "totalTime": 30,
-      "lastUpdated": "2026-04-22T20:22:41.463Z"
+      "indirectCosts": [
+        {
+          "concept": "Papel de horno especial",
+          "amount": 0.2
+        },
+        {
+          "concept": "Merma de horneado (gas)",
+          "amount": 0.5
+        }
+      ]
     },
     {
-      "id": "mock-9",
-      "name": "Caldo de Ave Concentrado",
+      "id": "mock-detailed-2",
+      "name": "Fondo Oscuro de Ternera (Demi-glace base)",
       "type": "semielaborado",
       "category": "Bases",
       "image": "https://images.unsplash.com/photo-1548943487-a2e4f4b9fb36?auto=format&fit=crop&q=80&w=600",
@@ -9527,115 +9242,1291 @@
       "portionUnit": "litro",
       "targetFoodCost": 20,
       "suggestedMargin": 80,
+      "code": "BAS-005",
+      "version": 5,
+      "createdAt": "2022-11-05T08:00:00Z",
+      "revisedAt": "2026-04-22T20:26:15.730Z",
+      "saleUnit": "litro",
+      "approvalStatus": "aprobado",
+      "approvedBy": "Jefe de Partida",
+      "approvedAt": "2026-04-22T20:26:15.730Z",
+      "approvalSignature": "JP Salsas",
+      "description": "Base de reducción tradicional de huesos de ternera tostados y mirepoix, hervido durante 24h.",
+      "qualityStandard": "Textura gelatinosa en frío, color caoba oscuro y brillante. Sabor profundo sin amargor.",
+      "finalPresentation": "Almacenado en abatidor, envasado al vacío en bolsas de 1L.",
+      "saleFormat": "Producción Interna",
+      "grossWeight": 12000,
+      "netWeight": 5000,
+      "exactPortionWeight": 1000,
+      "tolerancePercent": 0,
+      "servingTemp": "N/A",
+      "conservation": "Abatir a 3ºC en < 90 min. Congelación a -18ºC",
+      "shelfLife": "3 meses congelado",
+      "allergenWarnings": "No usar sulfitos en el vino del desglasado sin anotar.",
+      "platingNotes": "N/A",
+      "totalTime": 1440,
+      "elaborationPhases": [
+        {
+          "name": "Tostado de huesos",
+          "duration": 90,
+          "temperature": "220 °C"
+        },
+        {
+          "name": "Mirepoix y pasta de tomate",
+          "duration": 40,
+          "temperature": "Fuego medio"
+        },
+        {
+          "name": "Desglasado y cocción lenta",
+          "duration": 1300,
+          "temperature": "85-90 °C"
+        },
+        {
+          "name": "Filtrado y reducción",
+          "duration": 180,
+          "temperature": "Fuego lento"
+        }
+      ],
       "ingredients": [
         {
-          "id": "ing-csv-71",
-          "amount": 1.5,
+          "id": "ing-005",
+          "amount": 5,
           "unit": "kg",
-          "yieldPercent": 100
-        },
-        {
-          "id": "ing-csv-233",
-          "amount": 0.3,
-          "unit": "kg",
-          "grossAmount": 0.35,
-          "yieldPercent": 85.71428571428572
-        },
-        {
-          "id": "ing-csv-218",
-          "amount": 0.2,
-          "unit": "kg",
-          "grossAmount": 0.25,
-          "yieldPercent": 80
+          "grossAmount": 5.5,
+          "yieldPercent": 90.91,
+          "notes": "Troceados"
         },
         {
           "id": "ing-006",
-          "amount": 0.3,
+          "amount": 1,
           "unit": "kg",
-          "grossAmount": 0.32,
-          "yieldPercent": 93.75
+          "grossAmount": 1.2,
+          "yieldPercent": 83.33,
+          "notes": "Con piel (color)"
+        },
+        {
+          "id": "ing-csv-233",
+          "amount": 0.8,
+          "unit": "kg",
+          "grossAmount": 0.9,
+          "yieldPercent": 88.89,
+          "notes": "Mirepoix grueso"
+        },
+        {
+          "id": "ing-csv-218",
+          "amount": 0.5,
+          "unit": "kg",
+          "grossAmount": 0.7,
+          "yieldPercent": 71.43,
+          "notes": "Solo parte verde"
+        },
+        {
+          "id": "ing-csv-449",
+          "amount": 0.2,
+          "unit": "kg",
+          "grossAmount": 0.2,
+          "yieldPercent": 100,
+          "notes": "Para tostar"
+        },
+        {
+          "id": "ing-csv-429",
+          "amount": 1,
+          "unit": "L",
+          "grossAmount": 1,
+          "yieldPercent": 100,
+          "notes": "Desglasado"
         },
         {
           "id": "ing-csv-209",
-          "amount": 6,
+          "amount": 15,
           "unit": "L",
-          "yieldPercent": 100
-        },
-        {
-          "id": "ing-003",
-          "amount": 0.01,
-          "unit": "kg",
-          "yieldPercent": 100
+          "grossAmount": 15,
+          "yieldPercent": 100,
+          "notes": "Fría para extracción"
         }
       ],
-      "steps": [
-        "Tostar carcasas",
-        "Tostar verduras",
-        "Añadir agua fría",
-        "Hervir a fuego lento 3 horas",
-        "Colar y desgrasar"
-      ],
-      "totalTime": 200,
-      "lastUpdated": "2026-04-22T20:22:41.463Z"
-    },
-    {
-      "id": "mock-10",
-      "name": "Brownie Jugoso de Chocolate",
-      "type": "plato",
-      "category": "Postres",
-      "image": "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&q=80&w=600",
-      "portions": 12,
-      "portionUnit": "ración",
-      "targetFoodCost": 25,
-      "suggestedMargin": 75,
-      "ingredients": [
+      "laborOverrides": true,
+      "customLaborItems": [
         {
-          "id": "ing-csv-476",
-          "amount": 0.25,
-          "unit": "kg",
-          "yieldPercent": 100
+          "concept": "Preparación de verduras",
+          "minutes": 20,
+          "costPerHour": 12
         },
         {
-          "id": "ing-012",
-          "amount": 0.15,
+          "concept": "Filtrado manual (chino estameña)",
+          "minutes": 30,
+          "costPerHour": 15
+        }
+      ],
+      "overridesIndirect": true,
+      "customIndirectCosts": [
+        {
+          "concept": "Consumo prolongado gas (24h)",
+          "amount": 3.5
+        },
+        {
+          "concept": "Bolsas de vacío 1L",
+          "amount": 0.75
+        }
+      ],
+      "prepHistory": [],
+      "totalPreps": 0,
+      "lastUpdated": "2026-04-22T20:26:15.730Z",
+      "steps": [],
+      "laborItems": [
+        {
+          "profile": "Preparación de verduras",
+          "minutes": 20,
+          "costPerHour": 12
+        },
+        {
+          "profile": "Filtrado manual (chino estameña)",
+          "minutes": 30,
+          "costPerHour": 15
+        }
+      ],
+      "indirectCosts": [
+        {
+          "concept": "Consumo prolongado gas (24h)",
+          "amount": 3.5
+        },
+        {
+          "concept": "Bolsas de vacío 1L",
+          "amount": 0.75
+        }
+      ]
+    },
+    {
+      "id": "mock-detailed-3",
+      "name": "Cheesecake de Pistacho Ibérico",
+      "type": "plato",
+      "category": "Postres",
+      "image": "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&q=80&w=600",
+      "portions": 10,
+      "portionUnit": "porción",
+      "targetFoodCost": 25,
+      "suggestedMargin": 75,
+      "code": "PST-012",
+      "version": 1,
+      "createdAt": "2026-04-22T20:26:15.730Z",
+      "revisedAt": "2026-04-22T20:26:15.730Z",
+      "saleUnit": "porción triangular",
+      "approvalStatus": "pendiente",
+      "approvedBy": "",
+      "approvedAt": "",
+      "approvalSignature": "",
+      "description": "Tarta de queso fluida estilo viña infusionada con crema de pistachos tostados 100% y base crujiente.",
+      "qualityStandard": "Bordes cuajados y tostados (caramelización de Maillard), centro tembloroso (coulant).",
+      "finalPresentation": "Cortada a 36 grados, centro chorreando, acompañada de pistachos garrapiñados enteros.",
+      "saleFormat": "Carta Postres",
+      "grossWeight": 1600,
+      "netWeight": 1400,
+      "exactPortionWeight": 140,
+      "tolerancePercent": 5,
+      "servingTemp": "Ambiente (20-22 °C)",
+      "conservation": "Refrigeración 4ºC. Atemperar 2h antes.",
+      "shelfLife": "3 días",
+      "allergenWarnings": "Contiene frutos de cáscara y lácteos pesados.",
+      "platingNotes": "Cuchillo mojado en agua caliente para cortes limpios.",
+      "totalTime": 240,
+      "elaborationPhases": [
+        {
+          "name": "Base",
+          "duration": 15,
+          "temperature": "Frío"
+        },
+        {
+          "name": "Mezcla",
+          "duration": 10,
+          "temperature": "Batido suave"
+        },
+        {
+          "name": "Horneado inicial",
+          "duration": 25,
+          "temperature": "220 °C"
+        },
+        {
+          "name": "Reposo en horno apagado",
+          "duration": 15,
+          "temperature": "Abierto"
+        },
+        {
+          "name": "Enfriado",
+          "duration": 240,
+          "temperature": "Ambiente"
+        }
+      ],
+      "ingredients": [
+        {
+          "id": "ing-csv-192",
+          "amount": 0.8,
           "unit": "kg",
-          "yieldPercent": 100
+          "grossAmount": 0.82,
+          "yieldPercent": 97.56,
+          "notes": "Temperatura ambiente"
+        },
+        {
+          "id": "ing-007",
+          "amount": 0.4,
+          "unit": "L",
+          "grossAmount": 0.42,
+          "yieldPercent": 95.24,
+          "notes": "35% MG"
+        },
+        {
+          "id": "ing-csv-500",
+          "amount": 0.2,
+          "unit": "kg",
+          "grossAmount": 0.2,
+          "yieldPercent": 100,
+          "notes": "100% puro"
         },
         {
           "id": "ing-csv-413",
-          "amount": 0.2,
+          "amount": 0.25,
           "unit": "kg",
-          "yieldPercent": 100
+          "grossAmount": 0.25,
+          "yieldPercent": 100,
+          "notes": "Blanco"
         },
         {
           "id": "ing-008",
-          "amount": 4,
+          "amount": 5,
           "unit": "ud",
-          "yieldPercent": 100
+          "grossAmount": 5,
+          "yieldPercent": 100,
+          "notes": "Tamaño L"
         },
         {
-          "id": "ing-002",
+          "id": "ing-csv-43",
+          "amount": 0.15,
+          "unit": "kg",
+          "grossAmount": 0.16,
+          "yieldPercent": 93.75,
+          "notes": "Polvo"
+        },
+        {
+          "id": "ing-012",
           "amount": 0.08,
           "unit": "kg",
-          "yieldPercent": 100
+          "grossAmount": 0.08,
+          "yieldPercent": 100,
+          "notes": "Derretida"
+        }
+      ],
+      "laborOverrides": true,
+      "customLaborItems": [
+        {
+          "concept": "Elaboración masa",
+          "minutes": 20,
+          "costPerHour": 15
         },
         {
-          "id": "ing-csv-381",
+          "concept": "Corte y racionado cuidadoso",
+          "minutes": 15,
+          "costPerHour": 15
+        }
+      ],
+      "overridesIndirect": true,
+      "customIndirectCosts": [
+        {
+          "concept": "Papel sulfurizado molde",
+          "amount": 0.1
+        },
+        {
+          "concept": "Caja take-away (si aplica)",
+          "amount": 0.35
+        }
+      ],
+      "prepHistory": [],
+      "totalPreps": 0,
+      "lastUpdated": "2026-04-22T20:26:15.730Z",
+      "steps": [],
+      "laborItems": [
+        {
+          "profile": "Elaboración masa",
+          "minutes": 20,
+          "costPerHour": 15
+        },
+        {
+          "profile": "Corte y racionado cuidadoso",
+          "minutes": 15,
+          "costPerHour": 15
+        }
+      ],
+      "indirectCosts": [
+        {
+          "concept": "Papel sulfurizado molde",
+          "amount": 0.1
+        },
+        {
+          "concept": "Caja take-away (si aplica)",
+          "amount": 0.35
+        }
+      ]
+    },
+    {
+      "id": "mock-detailed-4",
+      "name": "Pulpo a la Brasa con Parmentier",
+      "type": "plato",
+      "category": "Pescados",
+      "image": "https://images.unsplash.com/photo-1596796362402-9ee633b43eb7?auto=format&fit=crop&q=80&w=600",
+      "portions": 1,
+      "portionUnit": "ración",
+      "targetFoodCost": 35,
+      "suggestedMargin": 65,
+      "code": "PES-021",
+      "version": 4,
+      "createdAt": "2023-05-12T00:00:00Z",
+      "revisedAt": "2026-04-22T20:26:15.730Z",
+      "saleUnit": "plato",
+      "approvalStatus": "aprobado",
+      "approvedBy": "Director de F&B",
+      "approvedAt": "2026-04-22T20:26:15.730Z",
+      "approvalSignature": "F&B Dir",
+      "description": "Pata de pulpo T2 cocida a baja temperatura, braseada al Josper sobre parmentier trufado de patata.",
+      "qualityStandard": "Exterior muy crujiente (ahumado), interior tierno que ceda a la cuchara. Parmentier elástico.",
+      "finalPresentation": "Base redonda de parmentier, pata entera curvada encima, pimentón en lluvia y AOVE.",
+      "saleFormat": "Carta Principal",
+      "grossWeight": 350,
+      "netWeight": 220,
+      "exactPortionWeight": 220,
+      "tolerancePercent": 2,
+      "servingTemp": "65 °C",
+      "conservation": "Vacío 65C",
+      "shelfLife": "5 días en vacío",
+      "allergenWarnings": "Moluscos (Pulpo) y Lácteos (Parmentier)",
+      "platingNotes": "Cresta de sal en escamas justo antes del pase.",
+      "totalTime": 180,
+      "elaborationPhases": [
+        {
+          "name": "Sous-vide pulpo",
+          "duration": 150,
+          "temperature": "77 °C"
+        },
+        {
+          "name": "Braseado Josper",
+          "duration": 4,
+          "temperature": "300 °C"
+        },
+        {
+          "name": "Parmentier",
+          "duration": 45,
+          "temperature": "90 °C"
+        }
+      ],
+      "ingredients": [
+        {
+          "id": "ing-csv-157",
+          "amount": 0.18,
+          "unit": "kg",
+          "grossAmount": 0.3,
+          "yieldPercent": 60,
+          "notes": "Merma alta por cocción"
+        },
+        {
+          "id": "ing-csv-13",
+          "amount": 0.1,
+          "unit": "kg",
+          "grossAmount": 0.15,
+          "yieldPercent": 66.67,
+          "notes": "Variedad Monalisa"
+        },
+        {
+          "id": "ing-012",
+          "amount": 0.03,
+          "unit": "kg",
+          "grossAmount": 0.03,
+          "yieldPercent": 100,
+          "notes": "En pomada"
+        },
+        {
+          "id": "ing-csv-207",
+          "amount": 0.005,
+          "unit": "L",
+          "grossAmount": 0.005,
+          "yieldPercent": 100,
+          "notes": "Unas gotas"
+        },
+        {
+          "id": "ing-csv-360",
+          "amount": 0.002,
+          "unit": "kg",
+          "grossAmount": 0.002,
+          "yieldPercent": 100,
+          "notes": "De la Vera"
+        },
+        {
+          "id": "ing-csv-350",
+          "amount": 0.003,
+          "unit": "kg",
+          "grossAmount": 0.003,
+          "yieldPercent": 100,
+          "notes": "Maldon"
+        }
+      ],
+      "laborOverrides": true,
+      "customLaborItems": [
+        {
+          "concept": "Envasado al vacío",
+          "minutes": 5,
+          "costPerHour": 15
+        },
+        {
+          "concept": "Servicio en partida Josper",
+          "minutes": 6,
+          "costPerHour": 18
+        }
+      ],
+      "overridesIndirect": true,
+      "customIndirectCosts": [
+        {
+          "concept": "Bolsa de cocción 90 micras",
+          "amount": 0.25
+        },
+        {
+          "concept": "Carbón Josper / Ración",
+          "amount": 0.4
+        }
+      ],
+      "prepHistory": [],
+      "totalPreps": 0,
+      "lastUpdated": "2026-04-22T20:26:15.730Z",
+      "steps": [],
+      "laborItems": [
+        {
+          "profile": "Envasado al vacío",
+          "minutes": 5,
+          "costPerHour": 15
+        },
+        {
+          "profile": "Servicio en partida Josper",
+          "minutes": 6,
+          "costPerHour": 18
+        }
+      ],
+      "indirectCosts": [
+        {
+          "concept": "Bolsa de cocción 90 micras",
+          "amount": 0.25
+        },
+        {
+          "concept": "Carbón Josper / Ración",
+          "amount": 0.4
+        }
+      ]
+    },
+    {
+      "id": "mock-detailed-5",
+      "name": "Hamburguesa Wagyu Smash",
+      "type": "plato",
+      "category": "Carnes",
+      "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&q=80&w=600",
+      "portions": 1,
+      "portionUnit": "ud",
+      "targetFoodCost": 22,
+      "suggestedMargin": 78,
+      "code": "BGE-001",
+      "version": 10,
+      "createdAt": "2023-08-01T00:00:00Z",
+      "revisedAt": "2026-04-22T20:26:15.730Z",
+      "saleUnit": "unidad",
+      "approvalStatus": "aprobado",
+      "approvedBy": "Gerente",
+      "approvedAt": "2026-04-22T20:26:15.730Z",
+      "approvalSignature": "GM",
+      "description": "Doble burger smash de vacuno madurado (2x90g), cheddar fundido, cebolla caramelizada, pan brioche potato roll.",
+      "qualityStandard": "Costra crujiente en la carne (Maillard extremo), pan caliente e hidratado en mantequilla.",
+      "finalPresentation": "Papel encerado, servida en bandeja de acero con las patatas al lado.",
+      "saleFormat": "Street Food",
+      "grossWeight": 280,
+      "netWeight": 260,
+      "exactPortionWeight": 260,
+      "tolerancePercent": 3,
+      "servingTemp": "55 °C",
+      "conservation": "Producción al día",
+      "shelfLife": "2 horas de servicio",
+      "allergenWarnings": "Gluten (Pan), Lácteos (Queso, Pan).",
+      "platingNotes": "Salsa secreta arriba y abajo.",
+      "totalTime": 10,
+      "elaborationPhases": [
+        {
+          "name": "Boleado diario",
+          "duration": 1,
+          "temperature": "Frío"
+        },
+        {
+          "name": "Tostado pan",
+          "duration": 1,
+          "temperature": "Plancha 180ºC"
+        },
+        {
+          "name": "Smashear",
+          "duration": 3,
+          "temperature": "Plancha 220ºC"
+        },
+        {
+          "name": "Montaje",
+          "duration": 1,
+          "temperature": "Mesa pase"
+        }
+      ],
+      "ingredients": [
+        {
+          "id": "ing-csv-60",
+          "amount": 0.18,
+          "unit": "kg",
+          "grossAmount": 0.18,
+          "yieldPercent": 100,
+          "notes": "2 bolas de 90g"
+        },
+        {
+          "id": "ing-csv-40",
+          "amount": 1,
+          "unit": "ud",
+          "grossAmount": 1,
+          "yieldPercent": 100,
+          "notes": "Potato roll"
+        },
+        {
+          "id": "ing-csv-187",
+          "amount": 2,
+          "unit": "ud",
+          "grossAmount": 2,
+          "yieldPercent": 100,
+          "notes": "Lonchas"
+        },
+        {
+          "id": "ing-006",
+          "amount": 0.03,
+          "unit": "kg",
+          "grossAmount": 0.03,
+          "yieldPercent": 100,
+          "notes": "Semielaborado interno"
+        },
+        {
+          "id": "ing-012",
+          "amount": 0.01,
+          "unit": "kg",
+          "grossAmount": 0.01,
+          "yieldPercent": 100,
+          "notes": "Para tostar pan"
+        }
+      ],
+      "laborOverrides": true,
+      "customLaborItems": [
+        {
+          "concept": "Boleo matutino (prorrateo)",
+          "minutes": 1,
+          "costPerHour": 12
+        },
+        {
+          "concept": "Plancha servicio",
+          "minutes": 4,
+          "costPerHour": 15
+        }
+      ],
+      "overridesIndirect": true,
+      "customIndirectCosts": [
+        {
+          "concept": "Papel antigrasa",
+          "amount": 0.05
+        },
+        {
+          "concept": "Bandeja cartón take-away",
+          "amount": 0.15
+        }
+      ],
+      "prepHistory": [],
+      "totalPreps": 0,
+      "lastUpdated": "2026-04-22T20:26:15.730Z",
+      "steps": [],
+      "laborItems": [
+        {
+          "profile": "Boleo matutino (prorrateo)",
+          "minutes": 1,
+          "costPerHour": 12
+        },
+        {
+          "profile": "Plancha servicio",
+          "minutes": 4,
+          "costPerHour": 15
+        }
+      ],
+      "indirectCosts": [
+        {
+          "concept": "Papel antigrasa",
+          "amount": 0.05
+        },
+        {
+          "concept": "Bandeja cartón take-away",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "mock-detailed-6",
+      "name": "Masa de Pizza Napolitana (Biga)",
+      "type": "semielaborado",
+      "category": "Masas",
+      "image": "https://images.unsplash.com/photo-1574894709920-11b28e7367e3?auto=format&fit=crop&q=80&w=600",
+      "portions": 30,
+      "portionUnit": "bola",
+      "targetFoodCost": 15,
+      "suggestedMargin": 85,
+      "code": "MAS-003",
+      "version": 2,
+      "createdAt": "2023-02-15T00:00:00Z",
+      "revisedAt": "2026-04-22T20:26:15.730Z",
+      "saleUnit": "bola 260g",
+      "approvalStatus": "aprobado",
+      "approvedBy": "Pizzaiolo",
+      "approvedAt": "2026-04-22T20:26:15.730Z",
+      "approvalSignature": "PZ Master",
+      "description": "Masa contemporánea hidratación 70%, fermentación 48h con prefermento Biga al 30%.",
+      "qualityStandard": "Bolas lisas, sin costra, con gas atrapado visible tras las 48h. Cornisa alveolar garantizada.",
+      "finalPresentation": "Bandejas de fermentación tapadas, 15 bolas por bandeja.",
+      "saleFormat": "Uso Interno",
+      "grossWeight": 7800,
+      "netWeight": 7800,
+      "exactPortionWeight": 260,
+      "tolerancePercent": 0.5,
+      "servingTemp": "Atemperada a 18ºC",
+      "conservation": "Cámara a 4ºC",
+      "shelfLife": "72 horas máximo",
+      "allergenWarnings": "Alta volatilidad de harina (Gluten) en el ambiente.",
+      "platingNotes": "N/A",
+      "totalTime": 3000,
+      "elaborationPhases": [
+        {
+          "name": "Biga (amasado rudo)",
+          "duration": 5,
+          "temperature": "Ambiente"
+        },
+        {
+          "name": "Fermentación Biga",
+          "duration": 1440,
+          "temperature": "18 °C"
+        },
+        {
+          "name": "Amasado final",
+          "duration": 18,
+          "temperature": "Fricción controlada (<24ºC)"
+        },
+        {
+          "name": "Reposo en bloque",
+          "duration": 60,
+          "temperature": "Ambiente"
+        },
+        {
+          "name": "Boleado (Staglio)",
+          "duration": 30,
+          "temperature": "Mesa acero"
+        },
+        {
+          "name": "Maduración en frío",
+          "duration": 1440,
+          "temperature": "4 °C"
+        }
+      ],
+      "ingredients": [
+        {
+          "id": "ing-002",
+          "amount": 4.5,
+          "unit": "kg",
+          "grossAmount": 4.6,
+          "yieldPercent": 97.83,
+          "notes": "W300-320"
+        },
+        {
+          "id": "ing-csv-209",
+          "amount": 3.15,
+          "unit": "L",
+          "grossAmount": 3.15,
+          "yieldPercent": 100,
+          "notes": "Filtrada a 4ºC"
+        },
+        {
+          "id": "ing-003",
+          "amount": 0.135,
+          "unit": "kg",
+          "grossAmount": 0.135,
+          "yieldPercent": 100,
+          "notes": "Fina marina (30g/kg)"
+        },
+        {
+          "id": "ing-004",
+          "amount": 0.015,
+          "unit": "kg",
+          "grossAmount": 0.015,
+          "yieldPercent": 100,
+          "notes": "Levadura fresca"
+        }
+      ],
+      "laborOverrides": true,
+      "customLaborItems": [
+        {
+          "concept": "Amasado y control temp",
+          "minutes": 25,
+          "costPerHour": 18
+        },
+        {
+          "concept": "Boleado manual (staglio)",
+          "minutes": 30,
+          "costPerHour": 18
+        }
+      ],
+      "overridesIndirect": true,
+      "customIndirectCosts": [
+        {
+          "concept": "Electricidad Amasadora Espiral",
+          "amount": 0.5
+        }
+      ],
+      "prepHistory": [],
+      "totalPreps": 0,
+      "lastUpdated": "2026-04-22T20:26:15.730Z",
+      "steps": [],
+      "laborItems": [
+        {
+          "profile": "Amasado y control temp",
+          "minutes": 25,
+          "costPerHour": 18
+        },
+        {
+          "profile": "Boleado manual (staglio)",
+          "minutes": 30,
+          "costPerHour": 18
+        }
+      ],
+      "indirectCosts": [
+        {
+          "concept": "Electricidad Amasadora Espiral",
+          "amount": 0.5
+        }
+      ]
+    },
+    {
+      "id": "mock-detailed-7",
+      "name": "Canelón de Pato Confitado y Foie",
+      "type": "plato",
+      "category": "Entrantes",
+      "image": "https://images.unsplash.com/photo-1626002167732-b7e532a818c5?auto=format&fit=crop&q=80&w=600",
+      "portions": 6,
+      "portionUnit": "ración",
+      "targetFoodCost": 32,
+      "suggestedMargin": 68,
+      "code": "ENT-033",
+      "version": 4,
+      "createdAt": "2023-11-01T00:00:00Z",
+      "revisedAt": "2026-04-22T20:26:15.730Z",
+      "saleUnit": "ración 2 uds",
+      "approvalStatus": "aprobado",
+      "approvedBy": "Chef Ejecutivo",
+      "approvedAt": "2026-04-22T20:26:15.730Z",
+      "approvalSignature": "Chef Master",
+      "description": "Pasta fresca rellena de farsa de muslo de pato, foie gras y chalota, napado con bechamel de trufa.",
+      "qualityStandard": "El relleno debe estar emulsionado, la pasta al dente y el gratinado dorado pero sin secar la salsa.",
+      "finalPresentation": "Plato rectangular ancho, 2 canelones alineados, costra dorada de parmesano, crujiente de piel de pato.",
+      "saleFormat": "Menú Degustación",
+      "grossWeight": 1400,
+      "netWeight": 1200,
+      "exactPortionWeight": 200,
+      "tolerancePercent": 2,
+      "servingTemp": "70 °C",
+      "conservation": "Montados en bandeja, refrigerados",
+      "shelfLife": "3 días",
+      "allergenWarnings": "Gluten (Pasta, Harina), Lácteos (Leche, Queso, Foie curado?).",
+      "platingNotes": "Limpiar bien los bordes del plato que se gratinan.",
+      "totalTime": 180,
+      "elaborationPhases": [
+        {
+          "name": "Desmigado pato",
+          "duration": 40,
+          "temperature": "Frío"
+        },
+        {
+          "name": "Farsa y ligado con foie",
+          "duration": 25,
+          "temperature": "Sartén media"
+        },
+        {
+          "name": "Hervir pasta y enfriar",
+          "duration": 15,
+          "temperature": "100 °C"
+        },
+        {
+          "name": "Rellenado (Manga)",
+          "duration": 30,
+          "temperature": "Mesa fría"
+        },
+        {
+          "name": "Bechamel y gratinado",
+          "duration": 20,
+          "temperature": "220 °C"
+        }
+      ],
+      "ingredients": [
+        {
+          "id": "ing-csv-74",
+          "amount": 0.6,
+          "unit": "kg",
+          "grossAmount": 1,
+          "yieldPercent": 60,
+          "notes": "Merma de hueso y piel"
+        },
+        {
+          "id": "ing-csv-551",
+          "amount": 0.15,
+          "unit": "kg",
+          "grossAmount": 0.16,
+          "yieldPercent": 93.75,
+          "notes": "Fresco, marcado en sartén"
+        },
+        {
+          "id": "ing-csv-29",
+          "amount": 0.2,
+          "unit": "kg",
+          "grossAmount": 0.2,
+          "yieldPercent": 100,
+          "notes": "12 placas"
+        },
+        {
+          "id": "ing-csv-219",
           "amount": 0.1,
           "unit": "kg",
           "grossAmount": 0.12,
-          "yieldPercent": 83.33333333333334
+          "yieldPercent": 83.33,
+          "notes": "Brunoise"
+        },
+        {
+          "id": "ing-csv-166",
+          "amount": 0.4,
+          "unit": "L",
+          "grossAmount": 0.4,
+          "yieldPercent": 100,
+          "notes": "Bechamel"
+        },
+        {
+          "id": "ing-012",
+          "amount": 0.04,
+          "unit": "kg",
+          "grossAmount": 0.04,
+          "yieldPercent": 100,
+          "notes": "Roux"
+        },
+        {
+          "id": "ing-002",
+          "amount": 0.04,
+          "unit": "kg",
+          "grossAmount": 0.04,
+          "yieldPercent": 100,
+          "notes": "Roux"
+        },
+        {
+          "id": "ing-csv-181",
+          "amount": 0.05,
+          "unit": "kg",
+          "grossAmount": 0.05,
+          "yieldPercent": 100,
+          "notes": "Gratinar"
         }
       ],
-      "steps": [
-        "Fundir chocolate con mantequilla",
-        "Batir huevos con azúcar",
-        "Mezclar e integrar harina",
-        "Añadir nueces",
-        "Hornear 25 min a 180C"
+      "laborOverrides": true,
+      "customLaborItems": [
+        {
+          "concept": "Deshuese manual pato",
+          "minutes": 15,
+          "costPerHour": 15
+        },
+        {
+          "concept": "Rellenado manual con manga",
+          "minutes": 20,
+          "costPerHour": 15
+        }
       ],
+      "overridesIndirect": true,
+      "customIndirectCosts": [
+        {
+          "concept": "Manga pastelera desechable",
+          "amount": 0.25
+        }
+      ],
+      "prepHistory": [],
+      "totalPreps": 0,
+      "lastUpdated": "2026-04-22T20:26:15.730Z",
+      "steps": [],
+      "laborItems": [
+        {
+          "profile": "Deshuese manual pato",
+          "minutes": 15,
+          "costPerHour": 15
+        },
+        {
+          "profile": "Rellenado manual con manga",
+          "minutes": 20,
+          "costPerHour": 15
+        }
+      ],
+      "indirectCosts": [
+        {
+          "concept": "Manga pastelera desechable",
+          "amount": 0.25
+        }
+      ]
+    },
+    {
+      "id": "mock-detailed-8",
+      "name": "Salsa Teriyaki Glaseada",
+      "type": "semielaborado",
+      "category": "Salsas",
+      "image": "https://images.unsplash.com/photo-1607532941433-304659e8198a?auto=format&fit=crop&q=80&w=600",
+      "portions": 20,
+      "portionUnit": "ración",
+      "targetFoodCost": 15,
+      "suggestedMargin": 85,
+      "code": "SAL-099",
+      "version": 2,
+      "createdAt": "2023-04-10T00:00:00Z",
+      "revisedAt": "2026-04-22T20:26:15.730Z",
+      "saleUnit": "biberón 500ml",
+      "approvalStatus": "aprobado",
+      "approvedBy": "Salsero",
+      "approvedAt": "2026-04-22T20:26:15.730Z",
+      "approvalSignature": "SA",
+      "description": "Salsa japonesa tradicional espesada por reducción y almidón de maíz, brillante.",
+      "qualityStandard": "Debe napar la cuchara sin gotear rápidamente (punto de napa grueso). Brillo espejo.",
+      "finalPresentation": "Almacenado en biberones dosificadores.",
+      "saleFormat": "Uso Interno",
+      "grossWeight": 1200,
+      "netWeight": 900,
+      "exactPortionWeight": 45,
+      "tolerancePercent": 0,
+      "servingTemp": "Caliente 60ºC",
+      "conservation": "Refrigeración 4ºC",
+      "shelfLife": "15 días",
+      "allergenWarnings": "Soja, Gluten (Salsa de soja), Sésamo (opcional arriba).",
+      "platingNotes": "N/A",
       "totalTime": 45,
-      "lastUpdated": "2026-04-22T20:22:41.464Z"
+      "elaborationPhases": [
+        {
+          "name": "Mezcla y hervor inicial",
+          "duration": 10,
+          "temperature": "100 °C"
+        },
+        {
+          "name": "Reducción lenta",
+          "duration": 25,
+          "temperature": "80 °C"
+        },
+        {
+          "name": "Ligado con maicena",
+          "duration": 5,
+          "temperature": "90 °C"
+        }
+      ],
+      "ingredients": [
+        {
+          "id": "ing-csv-436",
+          "amount": 0.5,
+          "unit": "L",
+          "grossAmount": 0.5,
+          "yieldPercent": 100,
+          "notes": "Kikkoman roja"
+        },
+        {
+          "id": "ing-csv-428",
+          "amount": 0.2,
+          "unit": "L",
+          "grossAmount": 0.2,
+          "yieldPercent": 100,
+          "notes": "Mirin dulce"
+        },
+        {
+          "id": "ing-csv-428",
+          "amount": 0.2,
+          "unit": "L",
+          "grossAmount": 0.2,
+          "yieldPercent": 100,
+          "notes": "Para cocinar"
+        },
+        {
+          "id": "ing-csv-413",
+          "amount": 0.15,
+          "unit": "kg",
+          "grossAmount": 0.15,
+          "yieldPercent": 100,
+          "notes": "Azúcar moreno"
+        },
+        {
+          "id": "ing-csv-372",
+          "amount": 0.05,
+          "unit": "kg",
+          "grossAmount": 0.08,
+          "yieldPercent": 62.5,
+          "notes": "Rallado fresco"
+        },
+        {
+          "id": "ing-csv-12",
+          "amount": 0.02,
+          "unit": "kg",
+          "grossAmount": 0.02,
+          "yieldPercent": 100,
+          "notes": "Diluida en frío"
+        }
+      ],
+      "laborOverrides": false,
+      "customLaborItems": [],
+      "overridesIndirect": false,
+      "customIndirectCosts": [],
+      "prepHistory": [],
+      "totalPreps": 0,
+      "lastUpdated": "2026-04-22T20:26:15.730Z",
+      "steps": []
+    },
+    {
+      "id": "mock-detailed-9",
+      "name": "Hummus de Remolacha Asada",
+      "type": "plato",
+      "category": "Entrantes",
+      "image": "https://images.unsplash.com/photo-1574653835061-6d911b339f40?auto=format&fit=crop&q=80&w=600",
+      "portions": 5,
+      "portionUnit": "ración",
+      "targetFoodCost": 18,
+      "suggestedMargin": 82,
+      "code": "VEG-005",
+      "version": 3,
+      "createdAt": "2023-07-20T00:00:00Z",
+      "revisedAt": "2026-04-22T20:26:15.730Z",
+      "saleUnit": "ración 150g",
+      "approvalStatus": "aprobado",
+      "approvedBy": "Chef Partida Fría",
+      "approvedAt": "2026-04-22T20:26:15.730Z",
+      "approvalSignature": "PF",
+      "description": "Crema untuosa de garbanzos y tahini con remolacha asada al horno para aportar dulzor y color magenta vivo.",
+      "qualityStandard": "Textura extra sedosa (sin pieles de garbanzo), color brillante sin oxidación.",
+      "finalPresentation": "Bol de cerámica rústica, surco circular relleno de AOVE, semillas y pan pita caliente.",
+      "saleFormat": "Carta Entrantes (Vegan)",
+      "grossWeight": 1000,
+      "netWeight": 750,
+      "exactPortionWeight": 150,
+      "tolerancePercent": 3,
+      "servingTemp": "Fresco 10-12ºC",
+      "conservation": "Túper hermético en frío",
+      "shelfLife": "4 días",
+      "allergenWarnings": "Sésamo (Tahini), Gluten (Pan Pita).",
+      "platingNotes": "Evitar mojar los bordes del bol (mancha mucho).",
+      "totalTime": 75,
+      "elaborationPhases": [
+        {
+          "name": "Asado remolacha",
+          "duration": 60,
+          "temperature": "200 °C"
+        },
+        {
+          "name": "Pelado y troceado",
+          "duration": 5,
+          "temperature": "Frío"
+        },
+        {
+          "name": "Triturado Thermomix",
+          "duration": 10,
+          "temperature": "Máxima potencia"
+        }
+      ],
+      "ingredients": [
+        {
+          "id": "ing-csv-9",
+          "amount": 0.4,
+          "unit": "kg",
+          "grossAmount": 0.4,
+          "yieldPercent": 100,
+          "notes": "Cocidos"
+        },
+        {
+          "id": "ing-csv-235",
+          "amount": 0.2,
+          "unit": "kg",
+          "grossAmount": 0.3,
+          "yieldPercent": 66.67,
+          "notes": "Asada con piel y pelada post"
+        },
+        {
+          "id": "ing-csv-450",
+          "amount": 0.08,
+          "unit": "kg",
+          "grossAmount": 0.08,
+          "yieldPercent": 100,
+          "notes": "Pasta de sésamo"
+        },
+        {
+          "id": "ing-csv-305",
+          "amount": 0.04,
+          "unit": "L",
+          "grossAmount": 0.08,
+          "yieldPercent": 50,
+          "notes": "Zumo recién exprimido"
+        },
+        {
+          "id": "ing-001",
+          "amount": 0.05,
+          "unit": "L",
+          "grossAmount": 0.05,
+          "yieldPercent": 100,
+          "notes": "Emulsionado en hilo"
+        },
+        {
+          "id": "ing-csv-50",
+          "amount": 0.005,
+          "unit": "kg",
+          "grossAmount": 0.01,
+          "yieldPercent": 50,
+          "notes": "Sin germen"
+        },
+        {
+          "id": "ing-csv-367",
+          "amount": 0.003,
+          "unit": "kg",
+          "grossAmount": 0.003,
+          "yieldPercent": 100,
+          "notes": "En polvo"
+        }
+      ],
+      "laborOverrides": false,
+      "customLaborItems": [],
+      "overridesIndirect": false,
+      "customIndirectCosts": [],
+      "prepHistory": [],
+      "totalPreps": 0,
+      "lastUpdated": "2026-04-22T20:26:15.730Z",
+      "steps": []
+    },
+    {
+      "id": "mock-detailed-10",
+      "name": "Entrecot Lomo Bajo 300g con Guarnición",
+      "type": "plato",
+      "category": "Carnes",
+      "image": "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=600",
+      "portions": 1,
+      "portionUnit": "ración",
+      "targetFoodCost": 38,
+      "suggestedMargin": 62,
+      "code": "CAR-055",
+      "version": 1,
+      "createdAt": "2026-04-22T20:26:15.730Z",
+      "revisedAt": "2026-04-22T20:26:15.730Z",
+      "saleUnit": "plato",
+      "approvalStatus": "pendiente",
+      "approvedBy": "",
+      "approvedAt": "",
+      "approvalSignature": "",
+      "description": "Corte de lomo bajo madurado 30 días, parrillado con carbón de encina. Guarnición de pimientos asados.",
+      "qualityStandard": "Marcado de parrilla nítido (rejilla). Grasa lateral tostada y crujiente.",
+      "finalPresentation": "Corte limpio trinchado en la mesa. Pimientos en ramekín lateral.",
+      "saleFormat": "Carta Especial",
+      "grossWeight": 450,
+      "netWeight": 350,
+      "exactPortionWeight": 350,
+      "tolerancePercent": 5,
+      "servingTemp": "65 °C",
+      "conservation": "Cámara maduración 2ºC",
+      "shelfLife": "30 días maduración",
+      "allergenWarnings": "Libre de alérgenos EU directos.",
+      "platingNotes": "Plato de piedra caliente refractario.",
+      "totalTime": 20,
+      "elaborationPhases": [
+        {
+          "name": "Atemperado de carne",
+          "duration": 15,
+          "temperature": "Ambiente"
+        },
+        {
+          "name": "Parrilla Josper",
+          "duration": 4,
+          "temperature": "300 °C"
+        },
+        {
+          "name": "Reposo carne",
+          "duration": 3,
+          "temperature": "Pase 50ºC"
+        }
+      ],
+      "ingredients": [
+        {
+          "id": "ing-csv-53",
+          "amount": 0.3,
+          "unit": "kg",
+          "grossAmount": 0.38,
+          "yieldPercent": 78.95,
+          "notes": "Lomo bajo extra limpio"
+        },
+        {
+          "id": "ing-csv-228",
+          "amount": 0.08,
+          "unit": "kg",
+          "grossAmount": 0.12,
+          "yieldPercent": 66.67,
+          "notes": "Asado tiras"
+        },
+        {
+          "id": "ing-001",
+          "amount": 0.01,
+          "unit": "L",
+          "grossAmount": 0.01,
+          "yieldPercent": 100,
+          "notes": "Para pintar la rejilla"
+        },
+        {
+          "id": "ing-csv-350",
+          "amount": 0.005,
+          "unit": "kg",
+          "grossAmount": 0.005,
+          "yieldPercent": 100,
+          "notes": "Al servir, no antes"
+        }
+      ],
+      "laborOverrides": true,
+      "customLaborItems": [
+        {
+          "concept": "Limpieza lomo",
+          "minutes": 3,
+          "costPerHour": 18
+        },
+        {
+          "concept": "Parrilla servicio",
+          "minutes": 8,
+          "costPerHour": 18
+        }
+      ],
+      "overridesIndirect": true,
+      "customIndirectCosts": [
+        {
+          "concept": "Carbón y astillas encina",
+          "amount": 0.6
+        }
+      ],
+      "prepHistory": [],
+      "totalPreps": 0,
+      "lastUpdated": "2026-04-22T20:26:15.730Z",
+      "steps": [],
+      "laborItems": [
+        {
+          "profile": "Limpieza lomo",
+          "minutes": 3,
+          "costPerHour": 18
+        },
+        {
+          "profile": "Parrilla servicio",
+          "minutes": 8,
+          "costPerHour": 18
+        }
+      ],
+      "indirectCosts": [
+        {
+          "concept": "Carbón y astillas encina",
+          "amount": 0.6
+        }
+      ]
     }
   ],
   "categories": [

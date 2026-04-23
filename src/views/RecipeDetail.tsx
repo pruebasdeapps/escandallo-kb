@@ -105,9 +105,12 @@ const RecipeDetail: React.FC = () => {
           <div className="cost-card"><span>Materia Prima/Ración</span><h2>{formatCurrency(costs.portionCost, config.currency)}</h2></div>
           <div className="cost-card"><span>Mano de Obra/Ración</span><h2>{formatCurrency(costs.laborCost, config.currency)}</h2></div>
           <div className="cost-card"><span>Indirectos/Ud</span><h2>{formatCurrency(costs.indirectCost, config.currency)}</h2></div>
-          <div className="cost-card accent"><span>Coste Total Producción</span><h2>{formatCurrency(costs.totalProductionCost, config.currency)}</h2></div>
+          <div className="cost-card accent"><span>Coste Producción</span><h2>{formatCurrency(costs.totalProductionCost, config.currency)}</h2></div>
+          <div className="cost-card"><span>Gastos Generales</span><h2>{formatCurrency(costs.portionCost * ((recipe.overheads || config.defaultOverheads) / 100), config.currency)}</h2><small>{recipe.overheads || config.defaultOverheads}% s/ MP</small></div>
+          <div className="cost-card accent-dark"><span>Coste Total Final</span><h2>{formatCurrency(costs.finalTotalCost, config.currency)}</h2></div>
           <div className="cost-card highlight"><span>PVP Sugerido (IVA {config.iva}%)</span><h2>{formatCurrency(costs.priceWithVat, config.currency)}</h2><small>Base: {formatCurrency(costs.priceWithoutVat, config.currency)}</small></div>
-          <div className="cost-card"><span>Margen Bruto</span><h2>{formatCurrency(costs.grossMarginEuros, config.currency)}</h2><small>{formatPercentage(costs.grossMarginPercent)}</small></div>
+          <div className="cost-card success"><span>Margen Real (Markup)</span><h2>{formatPercentage(costs.markupPercent)}</h2></div>
+          <div className="cost-card"><span>Utilidad Bruta (Venta)</span><h2>{formatCurrency(costs.grossMarginEuros, config.currency)}</h2><small>{formatPercentage(costs.grossMarginPercent)}</small></div>
           <div className="cost-card"><span>Food Cost</span><h2 className={costs.foodCostPercentage > 35 ? 'danger' : 'success'}>{formatPercentage(costs.foodCostPercentage)}</h2></div>
           <div className="cost-card"><span>Coste Lote ({recipe.portions} ud)</span><h2>{formatCurrency(costs.costPerBatch, config.currency)}</h2></div>
         </div>
@@ -149,7 +152,7 @@ const RecipeDetail: React.FC = () => {
             </div>
           )}
           <ol className="steps-list">
-            {recipe.steps.map((step, idx) => <li key={idx}><span className="step-num">{idx + 1}</span><p>{step}</p></li>)}
+            {(recipe.steps || []).map((step, idx) => <li key={idx}><span className="step-num">{idx + 1}</span><p>{step}</p></li>)}
           </ol>
           {recipe.equipment && recipe.equipment.length > 0 && (
             <div className="equipment-list"><h3>Equipos</h3><div className="tags">{recipe.equipment.map((e, i) => <span key={i} className="eq-tag">{e}</span>)}</div></div>

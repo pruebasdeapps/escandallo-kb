@@ -35,9 +35,12 @@ const Analytics: React.FC = () => {
               <div key={i} className="bar-row">
                 <span className="bar-label">{stat.name}</span>
                 <div className="bar-container">
-                  <div className="bar-fill success" style={{ width: `${100 - stat.foodCostPercentage}%` }}></div>
+                  <div className="bar-fill success" style={{ width: `${Math.min(100, Math.max(0, stat.grossMarginPercent))}%` }}></div>
                 </div>
-                <span className="bar-value">{100 - stat.foodCostPercentage}% Margen</span>
+                <div className="bar-value">
+                  <div className="markup-val">{stat.markupPercent.toFixed(0)}% Mrg</div>
+                  <div className="margin-val">{stat.grossMarginPercent.toFixed(0)}% Utl</div>
+                </div>
               </div>
             ))}
           </div>

@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useStore } from '../store/useStore';
 import { formatCurrency, formatPercentage } from '../utils/calculations';
 import type { Ingredient, Unit, PurchaseType } from '../types';
-import { Search, Filter, Plus, Trash2, X, ShoppingCart, Truck, Edit2, ArrowLeft } from 'lucide-react';
+import { Search, Filter, Plus, Trash2, X, ShoppingCart, Truck, Edit2, ArrowLeft, Calculator, Check } from 'lucide-react';
 import DecimalInput from '../components/DecimalInput';
 import './IngredientList.css';
 
@@ -16,6 +16,8 @@ const IngredientList: React.FC = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
+  const [showWasteCalc, setShowWasteCalc] = useState(false);
+  const [wasteCalc, setWasteCalc] = useState({ gross: 0, net: 0 });
   const [newIng, setNewIng] = useState<Partial<Ingredient>>({
     name: '',
     category: categories[0] || 'Otros',
@@ -231,11 +233,32 @@ const IngredientList: React.FC = () => {
               </div>
               <div className="form-row">
                 <div className="form-group flex-1">
-                  <label>Merma (%)</label>
-                  <DecimalInput 
-                    value={newIng.waste || 0} 
-                    onChangeValue={val => setNewIng({...newIng, waste: val})} 
-                  />
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
+                    <label style={{ margin: 0 }}>Merma (%)</label>
+                    <button className="btn-icon-sm" onClick={() => setShowWasteCalc(!showWasteCalc)} title="Calculadora de Merma"><Calculator size={14} /></button>
+                  </div>
+                  {showWasteCalc ? (
+                    <div style={{ background: 'var(--bg-secondary)', padding: '0.75rem', borderRadius: '4px', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                      <div style={{ display: 'flex', gap: '0.5rem' }}>
+                        <div style={{ flex: 1 }}><label style={{ fontSize: '0.75rem' }}>Peso Bruto</label><DecimalInput value={wasteCalc.gross || ''} onChangeValue={val => setWasteCalc(prev => ({ ...prev, gross: val }))} /></div>
+                        <div style={{ flex: 1 }}><label style={{ fontSize: '0.75rem' }}>Peso Neto</label><DecimalInput value={wasteCalc.net || ''} onChangeValue={val => setWasteCalc(prev => ({ ...prev, net: val }))} /></div>
+                      </div>
+                      <button className="btn-secondary btn-sm" onClick={() => {
+                        if (wasteCalc.gross > 0 && wasteCalc.net >= 0 && wasteCalc.gross >= wasteCalc.net) {
+                          const w = ((wasteCalc.gross - wasteCalc.net) / wasteCalc.gross) * 100;
+                          setNewIng({ ...newIng, waste: parseFloat(w.toFixed(2)) });
+                          setShowWasteCalc(false);
+                        } else {
+                          alert('Valores de peso inválidos.');
+                        }
+                      }}>Aplicar Merma</button>
+                    </div>
+                  ) : (
+                    <DecimalInput 
+                      value={newIng.waste || 0} 
+                      onChangeValue={val => setNewIng({...newIng, waste: val})} 
+                    />
+                  )}
                 </div>
                 <div className="form-group flex-1">
                   <label>Tipo Compra</label>
