@@ -93,7 +93,8 @@ export const useStore = create<AppState>((set, get) => ({
   fetchData: async () => {
     set({ isLoading: true });
     try {
-      const response = await fetch('/lista.json');
+      const baseUrl = import.meta.env.BASE_URL;
+      const response = await fetch(`${baseUrl}lista.json`);
       if (!response.ok) throw new Error('Error al cargar los datos');
       const data: AppData = await response.json();
       
