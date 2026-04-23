@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { 
+  Home,
   LayoutDashboard, 
   UtensilsCrossed,
   ChefHat, 
@@ -24,7 +25,8 @@ interface SidebarProps {
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
   const { theme, setTheme } = useStore();
   const menuItems = [
-    { icon: <LayoutDashboard size={20} />, label: 'Dashboard', path: '/' },
+    { icon: <Home size={20} />, label: 'Inicio', path: '/' },
+    { icon: <LayoutDashboard size={20} />, label: 'Dashboard', path: '/dashboard' },
     { icon: <UtensilsCrossed size={20} />, label: 'Escandallos', path: '/recipes' },
     { icon: <ChefHat size={20} />, label: 'Semielaborados', path: '/semi-elaborated' },
     { icon: <Package size={20} />, label: 'Ingredientes', path: '/ingredients' },
@@ -40,7 +42,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
             <Menu size={24} />
           </button>
           <div className="logo-container">
-            <img src="/logo.png" alt="KB Logo" className="logo-img" />
+            <img src={`${import.meta.env.BASE_URL}logo.png`} alt="KB Logo" className="logo-img" />
           </div>
           <div className="brand-text">
             <h1>Escandallo <span>KB</span></h1>

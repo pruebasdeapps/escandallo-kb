@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Menu } from 'lucide-react';
 import { useStore } from './store/useStore';
 import Sidebar from './components/Sidebar';
+import Home from './views/Home';
 import Dashboard from './views/Dashboard';
 import RecipeList from './views/RecipeList';
 import RecipeDetail from './views/RecipeDetail';
@@ -49,7 +50,8 @@ const App: React.FC = () => {
           </header>
 
           <Routes>
-            <Route path="/" element={<Dashboard />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/recipes" element={<RecipeList type="plato" />} />
             <Route path="/semi-elaborated" element={<RecipeList type="semielaborado" />} />
             <Route path="/recipes/:id" element={<RecipeDetail />} />
