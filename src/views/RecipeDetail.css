@@ -1,0 +1,147 @@
+.recipe-detail-view { padding: 0; }
+
+/* Navigation */
+.detail-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 0.75rem; }
+.detail-actions { display: flex; gap: 0.5rem; }
+.icon-btn { background: var(--bg-card); border: 1px solid var(--border); padding: 0.5rem; border-radius: 8px; cursor: pointer; color: var(--text-muted); transition: all 0.2s; display: flex; align-items: center; text-decoration: none; }
+.icon-btn:hover { color: var(--text-main); border-color: var(--accent); }
+.icon-btn.highlight { color: var(--accent); }
+.icon-btn.success { color: var(--success); }
+.icon-btn.edit { color: var(--warning); }
+.icon-btn.delete { color: var(--danger); }
+
+/* Header */
+.detail-grid { display: flex; flex-direction: column; gap: 1.5rem; }
+.detail-header { display: flex; justify-content: space-between; gap: 1.5rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; }
+.header-info { flex: 1; }
+.header-badges { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.75rem; }
+.badge-type { background: var(--accent); color: white; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+.badge-status { padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.72rem; font-weight: 700; }
+.badge-status.borrador { background: var(--bg-main); color: var(--text-muted); border: 1px solid var(--border); }
+.badge-status.pendiente { background: #fef3c7; color: #92400e; }
+.badge-status.aprobado { background: #d1fae5; color: #065f46; }
+.badge-status.rechazado { background: #fee2e2; color: #991b1b; }
+.badge-code { background: var(--bg-main); color: var(--text-muted); padding: 0.25rem 0.6rem; border-radius: 6px; font-size: 0.72rem; font-weight: 600; font-family: monospace; border: 1px solid var(--border); }
+.badge-version { background: var(--bg-main); color: var(--accent); padding: 0.25rem 0.5rem; border-radius: 6px; font-size: 0.72rem; font-weight: 700; border: 1px solid var(--border); }
+.header-info h1 { font-size: 1.5rem; font-weight: 800; margin-bottom: 0.25rem; }
+.header-info > p { font-size: 0.85rem; color: var(--text-muted); }
+.recipe-description { margin-top: 0.5rem; font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; }
+.approval-line { margin-top: 0.5rem; font-size: 0.78rem; color: var(--text-muted); }
+.header-image { width: 160px; height: 120px; border-radius: 10px; overflow: hidden; flex-shrink: 0; }
+.header-image img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Allergens */
+.allergens-panel { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.25rem; }
+.allergens-panel h2 { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; font-weight: 700; margin-bottom: 0.75rem; }
+.allergens-list { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+.allergen-tag { background: #fef3c7; color: #92400e; padding: 0.25rem 0.6rem; border-radius: 6px; font-size: 0.72rem; font-weight: 600; }
+
+/* Cost Cards */
+.costs-summary-cards { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0.75rem; }
+.cost-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 1rem; text-align: center; }
+.cost-card span { font-size: 0.72rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; }
+.cost-card h2 { font-size: 1.2rem; font-weight: 800; margin: 0.25rem 0; }
+.cost-card small { font-size: 0.72rem; color: var(--text-muted); }
+.cost-card.highlight { border-color: var(--accent); background: linear-gradient(135deg, var(--bg-card), rgba(59,130,246,0.05)); }
+.cost-card.highlight h2 { color: var(--accent); }
+.cost-card.accent { border-color: var(--accent); }
+.cost-card.accent h2 { color: var(--accent); }
+.danger { color: var(--danger) !important; }
+.success { color: var(--success) !important; }
+
+/* Breakdown Table */
+.ingredients-breakdown, .labor-indirect-section, .quality-section { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; }
+.ingredients-breakdown h2, .labor-indirect-section h2, .quality-section h2 { display: flex; align-items: center; gap: 0.5rem; font-size: 0.95rem; font-weight: 700; margin-bottom: 1rem; }
+.breakdown-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+.breakdown-table th { text-align: left; padding: 0.6rem 0.5rem; border-bottom: 2px solid var(--border); font-weight: 700; font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.3px; }
+.breakdown-table td { padding: 0.6rem 0.5rem; border-bottom: 1px solid var(--border); }
+.breakdown-table tfoot td { font-weight: 700; border-top: 2px solid var(--border); border-bottom: none; padding-top: 0.75rem; }
+.total-value { color: var(--accent); font-weight: 800; }
+.font-bold { font-weight: 700; }
+.semi-label { font-size: 0.7rem; color: var(--accent); font-weight: 600; }
+.breakdown-table.compact { font-size: 0.8rem; }
+
+/* Labor/Indirect split */
+.labor-indirect-section { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+@media (max-width: 768px) { .labor-indirect-section { grid-template-columns: 1fr; } }
+
+/* Steps */
+.recipe-steps { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; }
+.recipe-steps h2 { font-size: 0.95rem; font-weight: 700; margin-bottom: 1rem; }
+.steps-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.75rem; }
+.steps-list li { display: flex; gap: 0.75rem; align-items: flex-start; }
+.step-num { min-width: 28px; height: 28px; background: var(--accent); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0; }
+.steps-list li p { font-size: 0.85rem; line-height: 1.5; margin: 0; }
+
+/* Phases */
+.phases-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.75rem; margin-bottom: 1rem; }
+.phase-card { background: var(--bg-main); border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem; }
+.phase-card strong { font-size: 0.82rem; display: block; margin-bottom: 0.3rem; }
+.phase-meta { display: flex; gap: 0.75rem; }
+.phase-meta span { display: flex; align-items: center; gap: 0.25rem; font-size: 0.75rem; color: var(--text-muted); }
+.phase-notes { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.3rem; }
+
+/* Equipment */
+.equipment-list { margin-top: 1rem; }
+.equipment-list h3 { font-size: 0.82rem; font-weight: 700; margin-bottom: 0.5rem; }
+.tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+.eq-tag { background: var(--bg-main); border: 1px solid var(--border); padding: 0.25rem 0.6rem; border-radius: 6px; font-size: 0.75rem; font-weight: 600; }
+.plating-notes { margin-top: 1rem; }
+.plating-notes h3 { font-size: 0.82rem; font-weight: 700; margin-bottom: 0.3rem; }
+.plating-notes p { font-size: 0.82rem; color: var(--text-muted); }
+
+/* Quality */
+.quality-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.75rem; }
+.quality-item { background: var(--bg-main); border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem; }
+.quality-item.full { grid-column: 1 / -1; }
+.quality-item span { font-size: 0.72rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; display: block; margin-bottom: 0.25rem; }
+.quality-item strong { font-size: 0.95rem; }
+.quality-item small { font-size: 0.72rem; color: var(--text-muted); }
+.quality-item p { font-size: 0.82rem; color: var(--text-main); line-height: 1.4; margin: 0; }
+
+/* Error view */
+.error-view { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 50vh; gap: 1rem; }
+.error-view button { padding: 0.5rem 1rem; background: var(--accent); color: white; border: none; border-radius: 8px; cursor: pointer; }
+
+/* Print */
+@media print {
+  .detail-nav { display: none !important; }
+  .recipe-detail-view { padding: 0; }
+  .cost-card { break-inside: avoid; }
+}
+
+/* Print Summary Section */
+.print-only-summary { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; }
+.print-only-summary h2 { font-size: 1.1rem; font-weight: 800; margin-bottom: 1.5rem; color: var(--text-main); border-bottom: 2px solid var(--border); padding-bottom: 0.5rem; }
+.summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 1.5rem; }
+@media (max-width: 768px) { .summary-grid { grid-template-columns: 1fr; gap: 1.5rem; } }
+.summary-col h3 { font-size: 0.9rem; font-weight: 700; margin-bottom: 1rem; color: var(--accent); }
+.summary-col ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.75rem; }
+.summary-col li { display: flex; justify-content: space-between; font-size: 0.85rem; border-bottom: 1px dashed var(--border); padding-bottom: 0.4rem; }
+.summary-col li span { color: var(--text-muted); }
+.summary-total { margin-top: 0.5rem; border-bottom: none !important; padding-top: 0.5rem; border-top: 2px solid var(--border); font-size: 0.95rem !important; }
+.summary-formulas { background: var(--bg-main); padding: 1rem; border-radius: 8px; border: 1px solid var(--border); }
+.summary-formulas h3 { font-size: 0.85rem; font-weight: 700; margin-bottom: 0.75rem; }
+.summary-formulas ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.5rem; }
+.summary-formulas li { display: flex; flex-direction: column; gap: 0.2rem; font-size: 0.8rem; }
+.summary-formulas li span { font-weight: 600; color: var(--text-muted); }
+.summary-formulas code { font-family: 'Roboto Mono', monospace; color: var(--accent); background: var(--bg-card); padding: 0.2rem 0.4rem; border-radius: 4px; border: 1px solid var(--border); }
+@media print {
+  .print-only-summary { border: none; padding: 0; margin-top: 3rem; page-break-inside: avoid; background: white; }
+  .summary-grid { gap: 4rem; }
+  .summary-col li { border-bottom-color: #ccc; }
+  .summary-total { border-top-color: #000; }
+  .summary-formulas { border-color: #ccc; background: #fafafa; }
+}
+
+@media (max-width: 1200px) {
+  .costs-summary-cards { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .costs-summary-cards { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 480px) {
+  .costs-summary-cards { grid-template-columns: 1fr; }
+}

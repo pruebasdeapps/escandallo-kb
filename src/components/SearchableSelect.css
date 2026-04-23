@@ -1,0 +1,141 @@
+.searchable-select-wrapper {
+  position: relative;
+  width: 100%;
+  font-family: var(--font-sans);
+}
+
+.searchable-select-display {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg-card);
+  cursor: pointer;
+  min-height: 36px;
+  transition: all 0.2s ease;
+}
+
+.searchable-select-display:hover, .searchable-select-display.focused {
+  border-color: var(--accent);
+}
+
+.searchable-select-display.focused {
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.placeholder-text {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+.selected-text {
+  color: var(--text-main);
+  font-size: 0.82rem;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dropdown-icon {
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.searchable-select-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 4px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: var(--shadow-md);
+  z-index: 1000;
+  max-height: 300px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-main);
+}
+
+.search-icon {
+  color: var(--text-muted);
+  margin-right: 0.5rem;
+}
+
+.search-box input {
+  border: none;
+  background: transparent;
+  width: 100%;
+  padding: 0;
+  font-size: 0.82rem;
+  color: var(--text-main);
+}
+
+.search-box input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.options-list {
+  overflow-y: auto;
+  flex: 1;
+  padding: 0.25rem 0;
+}
+
+.option-group {
+  margin-bottom: 0.5rem;
+}
+
+.group-label {
+  padding: 0.25rem 0.75rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: var(--bg-main);
+}
+
+.option-item {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.82rem;
+  color: var(--text-main);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.option-item:hover {
+  background: var(--bg-main);
+}
+
+.option-item.selected {
+  background: rgba(37, 99, 235, 0.1);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.option-item.add-new {
+  color: var(--accent);
+  font-weight: 600;
+  border-bottom: 1px dashed var(--border);
+}
+
+.no-options {
+  padding: 1rem;
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
