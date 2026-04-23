@@ -80,6 +80,31 @@ const Settings: React.FC = () => {
     a.click();
   };
 
+  const handleImport = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      try {
+        const content = e.target?.result as string;
+        // Validar que sea JSON válido
+        JSON.parse(content);
+        
+        if (window.confirm('¿Estás seguro de que quieres sobreescribir todos tus datos actuales con los de esta copia de seguridad? Esta acción no se puede deshacer.')) {
+          localStorage.setItem('escandallo_data', content);
+          alert('Copia de seguridad restaurada correctamente. La página se recargará para aplicar los cambios.');
+          window.location.reload();
+        }
+      } catch (err) {
+        alert('El archivo seleccionado no es un archivo de copia de seguridad válido.');
+      }
+    };
+    reader.readAsText(file);
+    // Resetear el input
+    event.target.value = '';
+  };
+
   const safeFormulas = useMemo(() => {
     return localConfig?.formulas || config?.formulas || {
       realCost: 'Precio / (1 - Merma/100)',
@@ -187,10 +212,20 @@ const Settings: React.FC = () => {
 
           <section className="settings-card">
             <h2><Database size={20} /> Datos y Respaldo</h2>
-            <div className="backup-actions">
+            <div className="backup-actions" style={{ display: 'flex', gap: '1rem', alignItems: 'center', marginBottom: '1rem' }}>
               <button className="btn-secondary" onClick={handleExport}>Exportar Backup JSON</button>
-              <p className="hint">Tus datos se guardan automáticamente en el navegador.</p>
+              
+              <label className="btn-secondary" style={{ cursor: 'pointer', margin: 0 }}>
+                Importar Backup
+                <input 
+                  type="file" 
+                  accept=".json" 
+                  onChange={handleImport} 
+                  style={{ display: 'none' }} 
+                />
+              </label>
             </div>
+            <p className="hint">Tus datos se guardan automáticamente en el navegador. Usa estas opciones para mover tus datos a otro dispositivo o tener una copia de seguridad segura.</p>
           </section>
 
           <section className="settings-card">
