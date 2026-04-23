@@ -35,8 +35,21 @@ const SearchableSelect: React.FC<SearchableSelectProps> = ({ options, value, onC
 
   const filteredOptions = useMemo(() => {
     if (!searchTerm) return options;
-    const lowerSearch = searchTerm.toLowerCase();
-    return options.filter(o => o.label.toLowerCase().includes(lowerSearch));
+    
+    // Normalizar quitando acentos y pasando a minúsculas
+    const normalize = (str: string) => 
+      str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+      
+    const cleanSearch = normalize(searchTerm).replace(/[^a-z0-9]/g, '');
+    const lowerSearch = normalize(searchTerm);
+
+    return options.filter(o => {
+      const cleanLabel = normalize(o.label).replace(/[^a-z0-9]/g, '');
+      const lowerLabel = normalize(o.label);
+      
+      // Coincidencia exacta sin acentos, o coincidencia "fuzzy" sin espacios
+      return lowerLabel.includes(lowerSearch) || cleanLabel.includes(cleanSearch);
+    });
   }, [options, searchTerm]);
 
   // Group options

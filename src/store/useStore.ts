@@ -165,12 +165,12 @@ export const useStore = create<AppState>((set, get) => ({
       const historyEntry = { date: `${day}/${month}/${year}`, price: old.price };
       updatedIng.priceHistory = [historyEntry, ...(old.priceHistory || [])];
 
-      // Mark affected recipes
+      // Mark affected recipes as updated (costes se calculan al vuelo en la UI, solo cambiamos la fecha)
       newRecipes = newRecipes.map(r => {
         const usesIngredient = r.ingredients.some(i => i.id === ingredient.id);
         if (usesIngredient) {
           recipesUpdated = true;
-          return { ...r, hasOutdatedPrice: true };
+          return { ...r, hasOutdatedPrice: false, lastUpdated: new Date().toISOString().split('T')[0] };
         }
         return r;
       });

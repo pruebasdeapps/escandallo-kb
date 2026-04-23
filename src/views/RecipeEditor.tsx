@@ -55,11 +55,9 @@ const RecipeEditor: React.FC = () => {
       if (existing) {
         setRecipe({
           ...existing,
-          // Normalizar fechas a formato YYYY-MM-DD para los campos <input type="date">
           createdAt: toDateInput(existing.createdAt),
           revisedAt: toDateInput(existing.revisedAt),
           approvedAt: toDateInput(existing.approvedAt),
-          // Asegurar arrays presentes aunque la receta no los tenga
           laborItems: existing.laborItems || [],
           indirectCosts: existing.indirectCosts || indirectDefaults.map(d => ({ concept: d.concept, amount: d.defaultAmount })),
           steps: existing.steps || [],
@@ -69,8 +67,26 @@ const RecipeEditor: React.FC = () => {
           prepHistory: existing.prepHistory || [],
         });
       }
+    } else {
+      const savedDraft = localStorage.getItem('escandallo_draft');
+      if (savedDraft) {
+        try {
+          const draft = JSON.parse(savedDraft);
+          if (window.confirm('Tienes un borrador guardado de un escandallo sin terminar. ¿Quieres recuperarlo?')) {
+            setRecipe(draft);
+          } else {
+            localStorage.removeItem('escandallo_draft');
+          }
+        } catch(e) {}
+      }
     }
   }, [id, recipes]);
+
+  useEffect(() => {
+    if (!id && (recipe.name || (recipe.ingredients && recipe.ingredients.length > 0))) {
+      localStorage.setItem('escandallo_draft', JSON.stringify(recipe));
+    }
+  }, [recipe, id]);
 
   const ingredientOptions = React.useMemo(() => {
     const opts: any[] = [];
@@ -88,8 +104,20 @@ const RecipeEditor: React.FC = () => {
       hasOutdatedPrice: false,
     } as Recipe;
     if (id) updateRecipe(finalRecipe); else addRecipe(finalRecipe);
+    localStorage.removeItem('escandallo_draft');
     navigate(`/recipes/${finalRecipe.id}`);
   };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+        e.preventDefault();
+        handleSave();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [recipe, id]);
 
   // ── Ingredientes helpers ───────────────────────────────────────
   const addIngredientRow = () => setRecipe({ ...recipe, ingredients: [...(recipe.ingredients || []), { id: '', amount: 0, unit: 'kg' }] });
@@ -210,7 +238,18 @@ const RecipeEditor: React.FC = () => {
                   />
                 </div>
                 <div className="ing-qty">
-                  <DecimalInput value={ing.amount} onChangeValue={val => updateIngredient(idx, 'amount', val)} placeholder="Cant. Neta" />
+                  <DecimalInput 
+                    value={ing.amount} 
+                    onChangeValue={val => updateIngredient(idx, 'amount', val)} 
+                    placeholder="Cant. Neta"
+                    baseUnit={ing.unit}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault();
+                        addIngredientRow();
+                      }
+                    }}
+                  />
                   <span className="ing-unit-tag">{ing.unit}</span>
                 </div>
                 <button className="btn-icon-danger" onClick={() => removeIngredient(idx)}><Trash2 size={16} /></button>

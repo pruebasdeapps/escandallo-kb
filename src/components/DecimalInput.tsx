@@ -3,9 +3,10 @@ import React, { useState, useEffect } from 'react';
 interface DecimalInputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange'> {
   value: number | string;
   onChangeValue: (val: number) => void;
+  baseUnit?: string;
 }
 
-const DecimalInput: React.FC<DecimalInputProps> = ({ value, onChangeValue, ...props }) => {
+const DecimalInput: React.FC<DecimalInputProps> = ({ value, onChangeValue, baseUnit, ...props }) => {
   const [localValue, setLocalValue] = useState(value === 0 && props.placeholder ? '' : value.toString());
 
   // Sync with external value if it changes from outside
@@ -24,12 +25,15 @@ const DecimalInput: React.FC<DecimalInputProps> = ({ value, onChangeValue, ...pr
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value;
-    // Permitir solo números, comas y puntos
-    if (/^[0-9.,]*$/.test(val)) {
+    // Permitir números, comas, puntos y letras (para sufijos como 'g' o 'ml')
+    if (/^[0-9.,]*\s*[a-zA-Z]*$/.test(val)) {
       setLocalValue(val);
-      const parsed = parseFloat(val.replace(',', '.'));
-      if (!isNaN(parsed)) {
-        onChangeValue(parsed);
+      // Actualizar solo si es número puro para evitar NaN
+      if (/^[0-9.,]+$/.test(val)) {
+        const parsed = parseFloat(val.replace(',', '.'));
+        if (!isNaN(parsed)) {
+          onChangeValue(parsed);
+        }
       } else if (val === '') {
         onChangeValue(0);
       }
@@ -37,10 +41,26 @@ const DecimalInput: React.FC<DecimalInputProps> = ({ value, onChangeValue, ...pr
   };
 
   const handleBlur = () => {
-    const parsed = parseFloat(localValue.replace(',', '.'));
+    let rawStr = localValue.trim().toLowerCase();
+    let divisor = 1;
+
+    // Conversión automática de unidades si escriben 'g' o 'ml'
+    if (baseUnit === 'kg' && rawStr.endsWith('g') && !rawStr.endsWith('kg')) {
+      divisor = 1000;
+      rawStr = rawStr.replace('g', '').trim();
+    } else if (baseUnit === 'L' && rawStr.endsWith('ml')) {
+      divisor = 1000;
+      rawStr = rawStr.replace('ml', '').trim();
+    } else {
+      // Quitar letras restantes para el parseo
+      rawStr = rawStr.replace(/[a-z]/g, '');
+    }
+
+    const parsed = parseFloat(rawStr.replace(',', '.'));
     if (!isNaN(parsed)) {
-      setLocalValue(parsed.toString());
-      onChangeValue(parsed);
+      const finalVal = parsed / divisor;
+      setLocalValue(finalVal.toString());
+      onChangeValue(finalVal);
     } else {
       if (props.placeholder) {
         setLocalValue('');
