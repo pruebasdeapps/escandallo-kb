@@ -115,53 +115,73 @@ export const useStore = create<AppState>((set, get) => ({
 
   fetchData: async () => {
     set({ isLoading: true });
+
+    // 1. Cargar datos locales primero (fuente principal si existen)
+    const localData = localStorage.getItem('escandallo_data');
+    let localParsed: any = null;
+    if (localData) {
+      try {
+        localParsed = JSON.parse(localData);
+      } catch {
+        localParsed = null;
+      }
+    }
+
+    // 2. Intentar cargar lista.json como complemento (no bloqueante)
+    let remoteData: AppData | null = null;
     try {
       const baseUrl = import.meta.env.BASE_URL;
       const response = await fetch(`${baseUrl}lista.json`);
-      if (!response.ok) throw new Error('Error al cargar los datos');
-      const data: AppData = await response.json();
-      
-      const localData = localStorage.getItem('escandallo_data');
-      if (localData) {
-        const parsed = JSON.parse(localData);
-        
-        // Fusión inteligente: añadir ingredientes/recetas nuevas de lista.json que no estén en local
-        const newIngredients = data.ingredients.filter(di => !parsed.ingredients.some((pi: any) => pi.id === di.id));
-        parsed.ingredients = [...parsed.ingredients, ...newIngredients];
+      if (response.ok) {
+        const contentType = response.headers.get('content-type') || '';
+        if (contentType.includes('application/json')) {
+          remoteData = await response.json();
+        }
+      }
+    } catch {
+      // Fallo de red / SW / offline: no bloquear la carga
+    }
 
-        // Fusión de recetas: añadir nuevas y sobreescribir los 'mock-'
-        let updatedRecipes = [...parsed.recipes];
-        
-        // 1. Añadir las nuevas
-        const newRecipes = data.recipes.filter(dr => !updatedRecipes.some(pr => pr.id === dr.id));
+    // 3. Fusionar y establecer estado
+    if (localParsed && localParsed.ingredients) {
+      // Hay datos locales: usarlos como base y fusionar con remoto si existe
+      if (remoteData) {
+        const newIngredients = remoteData.ingredients.filter(
+          (di: Ingredient) => !localParsed.ingredients.some((pi: any) => pi.id === di.id)
+        );
+        localParsed.ingredients = [...localParsed.ingredients, ...newIngredients];
+
+        let updatedRecipes = [...localParsed.recipes];
+        const newRecipes = remoteData.recipes.filter(
+          (dr: Recipe) => !updatedRecipes.some((pr: any) => pr.id === dr.id)
+        );
         updatedRecipes = [...updatedRecipes, ...newRecipes];
 
-        // 2. Sobreescribir las que empiezan por 'mock-' con las versiones del JSON (para los ejemplos hiper-detallados)
-        updatedRecipes = updatedRecipes.map(pr => {
+        updatedRecipes = updatedRecipes.map((pr: any) => {
           if (pr.id.startsWith('mock-')) {
-            const masterMock = data.recipes.find(dr => dr.id === pr.id);
+            const masterMock = remoteData!.recipes.find((dr: Recipe) => dr.id === pr.id);
             return masterMock || pr;
           }
           return pr;
         });
-        
-        parsed.recipes = updatedRecipes;
-
-        const mergedConfig = deepMergeConfig(DEFAULT_CONFIG, parsed.config);
-        
-        const finalState = { ...parsed, config: mergedConfig, isLoading: false };
-        set(finalState);
-        localStorage.setItem('escandallo_data', JSON.stringify(finalState)); // Guardar la fusión
-        applyTheme(parsed.theme || 'light');
-      } else {
-        const mergedConfig = deepMergeConfig(DEFAULT_CONFIG, data.config);
-        const finalState = { ...data, config: mergedConfig, isLoading: false };
-        set(finalState);
-        localStorage.setItem('escandallo_data', JSON.stringify(finalState));
-        applyTheme('light');
+        localParsed.recipes = updatedRecipes;
       }
-    } catch (err) {
-      set({ error: (err as Error).message, isLoading: false });
+
+      const mergedConfig = deepMergeConfig(DEFAULT_CONFIG, localParsed.config);
+      const finalState = { ...localParsed, config: mergedConfig, isLoading: false };
+      set(finalState);
+      localStorage.setItem('escandallo_data', JSON.stringify(finalState));
+      applyTheme(localParsed.theme || 'light');
+    } else if (remoteData) {
+      // No hay datos locales: usar lista.json como fuente inicial
+      const mergedConfig = deepMergeConfig(DEFAULT_CONFIG, remoteData.config);
+      const finalState = { ...remoteData, config: mergedConfig, isLoading: false };
+      set(finalState);
+      localStorage.setItem('escandallo_data', JSON.stringify(finalState));
+      applyTheme('light');
+    } else {
+      // Ni local ni remoto: mostrar error
+      set({ error: 'No se pudieron cargar los datos. Verifica tu conexión.', isLoading: false });
     }
   },
 

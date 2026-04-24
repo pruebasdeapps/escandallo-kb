@@ -179,7 +179,7 @@ export const formatCurrency = (amount: number, currency: string = '€') => {
 };
 
 export const formatPercentage = (value: number) => {
-  return `${value.toFixed(1)}%`;
+  return `${value.toFixed(2)}%`;
 };
 
 // ── Alérgenos ──────────────────────────────────────────────────────

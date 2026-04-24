@@ -38,8 +38,8 @@ const Analytics: React.FC = () => {
                   <div className="bar-fill success" style={{ width: `${Math.min(100, Math.max(0, stat.grossMarginPercent))}%` }}></div>
                 </div>
                 <div className="bar-value">
-                  <div className="markup-val">{stat.markupPercent.toFixed(0)}% Mrg</div>
-                  <div className="margin-val">{stat.grossMarginPercent.toFixed(0)}% Utl</div>
+                  <div className="markup-val">{stat.markupPercent.toFixed(2)}% Mrg</div>
+                  <div className="margin-val">{stat.grossMarginPercent.toFixed(2)}% Utl</div>
                 </div>
               </div>
             ))}
@@ -55,7 +55,7 @@ const Analytics: React.FC = () => {
             </div>
             <div className="info-item">
               <span>Food Cost Medio General</span>
-              <strong>{recipeStats.length > 0 ? (recipeStats.reduce((acc, s) => acc + s.foodCostPercentage, 0) / recipeStats.length).toFixed(1) : 0} %</strong>
+              <strong>{recipeStats.length > 0 ? (recipeStats.reduce((acc, s) => acc + s.foodCostPercentage, 0) / recipeStats.length).toFixed(2) : 0} %</strong>
             </div>
           </div>
         </section>

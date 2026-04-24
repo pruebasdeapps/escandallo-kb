@@ -9,7 +9,7 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.png', 'logo.png'],
+      includeAssets: ['favicon.png', 'logo.png', 'lista.json'],
       manifest: {
         name: 'Escandallo KB | Khaoula Beyuki',
         short_name: 'Escandallo KB',
